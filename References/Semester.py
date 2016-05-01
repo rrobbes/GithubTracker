@@ -12,6 +12,10 @@ __email__ = "mllorens@dcc.uchile.cl"
 Dictionary of project of the semester. The key is the username of the creator of the github
 project and the value is the repository's name.
 """
+fall16_projects = {'IsmaelAlvarez': 'logisim',
+                   'njara': 'mochadoom',
+                   'jSwingRipples': 'jswingripples',
+                   'TeraCityCC4401': 'Teracity'}
 fall16 = {
     'Emilio Aburto': {'user': 'emilio-aburto', 'repo': 'jswingripples'},
     'Ismael Alvarez': {'user': 'IsmaelAlvarez', 'repo': 'logisim'},

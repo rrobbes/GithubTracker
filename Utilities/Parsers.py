@@ -29,3 +29,5 @@ def parse_repositories(manager, projects):
         repo = user.get_repo(name_repo)
         repositories.append(Repository.Repository(repo))
     return repositories
+
+
