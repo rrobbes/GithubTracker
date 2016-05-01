@@ -11,7 +11,7 @@ The project uses the following libraries:
 
 * [PyGithub] - Python library implementing the GitHub API v3
 
-The project itself is open sourse with a [public repository][tracker] on GitHub.
+The project itself is open source with a [public repository][tracker] on GitHub.
 
 ### Run
 
