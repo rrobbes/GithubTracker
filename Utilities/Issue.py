@@ -20,7 +20,7 @@ class Issue:
         self.body = issue.body
         self.state = issue.state
         self.comments = Parsers.parse_comments(issue.get_comments())
-        self.assigned_to = issue.assignee.login if issue.assignee != None else None
+        self.assigned_to = issue.assignee.login if issue.assignee != None else ""
         self.labels = []
 
     def get_comments(self):
