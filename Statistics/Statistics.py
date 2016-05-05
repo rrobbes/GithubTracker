@@ -51,10 +51,29 @@ class Statistics:
         self.statistics = statistics
 
     def write_to_file(self):
+        print "Saving to file"
         for repository in self.statistics:
-            for element in repository:
-                text = "" # TODO fill with parsers and write to file
+            text = "{"
+            name = repository[0]
+            elements = repository[1]
+            for element in elements:
+                person = element[0]
+                text += "{'nombre:'"+person["nombre"]+"', 'user':'"+person["user"]+"', 'project':'"+name+"', 'commits':["
+                for commit in element[1]:
+                    text += Parsers.parse_commit_to_json(commit)+","
+                text = text[:-1] + "], 'issues': ["
+                for issue in element[2]:
+                    text += Parsers.parse_issue_to_json(issue)+","
+                text = text[:-1] + "], 'comments': ["
+                for comment in element[3]:
+                    text += Parsers.parse_comment_to_json(comment)+","
+                text = text[:-1] + "]},"
+            text = text[:-1] +"}"
 
+            filename = "Jsons/"+name+".json"
+            fo = open(filename, "w+")
+            fo.write(text)
+            fo.close()
 
 
 def merge_comments(commits, issues):

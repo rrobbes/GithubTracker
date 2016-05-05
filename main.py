@@ -21,6 +21,7 @@ statistics = Stats.Statistics(repositories, Repositories.fall16)
 
 statistics.calculate()
 
-# TODO Get statistics from repositories
+statistics.write_to_file()
+
 print "done"
 
