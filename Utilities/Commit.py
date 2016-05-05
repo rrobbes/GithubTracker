@@ -16,6 +16,7 @@ class Commit:
         self.author = commit.author.login if commit.author != None else commit.commit.author.name #issue.assignee.login if issue.assignee != None else None
         self.message = commit.commit.message
         self.url = commit.commit.html_url
+        self.time = commit.commit.committer.date
         self.comments = Parsers.parse_comments(commit.get_comments())
 
     def get_comments(self):

@@ -3,6 +3,7 @@ Statistics class.
 Here the program inspect a repository and store the statistics from each user.
 """
 import Utilities.Parsers as Parsers
+import os
 from pprint import pprint
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
@@ -48,6 +49,12 @@ class Statistics:
 
             print "\n"
         self.statistics = statistics
+
+    def write_to_file(self):
+        for repository in self.statistics:
+            for element in repository:
+                text = "" # TODO fill with parsers and write to file
+
 
 
 def merge_comments(commits, issues):

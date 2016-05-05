@@ -4,7 +4,7 @@ Main class of the GithubTracker project
 import References.Semester as Repositories
 import Utilities.Parsers as Parsers
 import Utilities.Login as Login
-import Statistics.Statistics as stats
+import Statistics.Statistics as Stats
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
 __license__ = "MIT"
@@ -17,7 +17,7 @@ manager = login.get_user()
 
 repositories = Parsers.parse_repositories(manager, Repositories.fall16_projects)
 
-statistics = stats.Statistics(repositories, Repositories.fall16)
+statistics = Stats.Statistics(repositories, Repositories.fall16)
 
 statistics.calculate()
 
