@@ -3,7 +3,7 @@ Statistics class.
 Here the program inspect a repository and store the statistics from each user.
 """
 import Utilities.Parsers as Parsers
-import os
+import json
 from pprint import pprint
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
@@ -72,7 +72,8 @@ class Statistics:
 
             filename = "Jsons/"+name+".json"
             fo = open(filename, "w+")
-            fo.write(text)
+            encoded_text = json.dumps(text)
+            fo.write(encoded_text)
             fo.close()
 
 

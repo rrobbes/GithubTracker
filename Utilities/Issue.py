@@ -14,7 +14,7 @@ class Issue:
     def __init__(self, issue):
         self.issue = issue
         self.author = issue.user.login
-        self.crated_time = issue.created_at
+        self.crated_time = unicode(issue.created_at)
         self.url = issue.html_url
         self.title = issue.title
         self.body = issue.body

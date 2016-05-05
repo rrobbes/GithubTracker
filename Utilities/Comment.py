@@ -15,4 +15,4 @@ class Comment:
         self.body = comment.body
         self.url = comment.html_url
         self.author = comment.user.login
-        self.time = comment.created_at
+        self.time = unicode(comment.created_at)
