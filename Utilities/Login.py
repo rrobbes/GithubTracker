@@ -14,7 +14,7 @@ __email__ = "mllorens@dcc.uchile.cl"
 class Login:
 
     def __init__(self):
-        print "Welcome to the Github Tracker\n\n Now we attemp to connect to GitHub\n"
+        print "Welcome to the Github Tracker\n\nNow we attempt to connect to GitHub\n"
         user = raw_input("Username: ")
         password = getpass.getpass("Password: ")
         self.user = Github(user, password)

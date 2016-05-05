@@ -57,3 +57,12 @@ def parse_users_issues(users, issues):
         specific_data.append([user, data])
     return specific_data
 
+
+def parse_users_comments(users, comments):
+    specific_data = []
+    for user in users:
+        data = []
+        for list_comment in comments:
+            data += [comment for comment in list_comment if user["user"] in comment.author]
+        specific_data.append([user, data])
+    return specific_data
