@@ -18,8 +18,6 @@ class Repository:
         self.commits = []
         self.issues = []
         self.since = Cons.sinceData
-        self.parse_commits(repo.get_commits(since=self.since))
-        self.parse_issues(repo.get_issues(since=self.since))
 
     def parse_commits(self, page_list):
         for c in page_list:
@@ -34,3 +32,16 @@ class Repository:
 
     def count_issues(self):
         return len(self.issues)
+
+    def get_commits(self):
+        if len(self.commits) == 0:
+            self.parse_commits(self.repo.get_commits(since=self.since))
+        return self.commits
+
+    def get_issues(self):
+        if len(self.issues) == 0:
+            self.parse_issues(self.repo.get_issues(since=self.since))
+        return self.issues
+
+    def get_name(self):
+        return self.repo.name

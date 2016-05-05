@@ -13,7 +13,7 @@ __email__ = "mllorens@dcc.uchile.cl"
 class Commit:
     def __init__(self, commit):
         self.commit = commit
-        self.author = commit.author.login
+        self.author = commit.author.login if commit.author != None else commit.commit.author.name #issue.assignee.login if issue.assignee != None else None
         self.message = commit.commit.message
         self.url = commit.commit.html_url
         self.comments = Parsers.parse_comments(commit.get_comments())
