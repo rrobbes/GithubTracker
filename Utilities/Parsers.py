@@ -18,6 +18,7 @@ def parse_comments(page_list):
 
 
 def parse_repositories(manager, projects):
+    print "Parsing repositories"
     repositories = []
     for owner, repo in projects.items():
         users = manager.search_users(owner)
@@ -44,8 +45,15 @@ def parse_users_from_json(repository, semester):
 def parse_users_commits(users, commits):
     specific_data = []
     for user in users:
-        data = [c for c in commits if user["user"] in c.author or user["nombre"] in c.author]
+        data = [commit for commit in commits if user["user"] in commit.author or user["nombre"] in commit.author]
         specific_data.append([user, data])
     return specific_data
 
+
+def parse_users_issues(users, issues):
+    specific_data = []
+    for user in users:
+        data = [issue for issue in issues if user["user"] in issue.author]
+        specific_data.append([user, data])
+    return specific_data
 

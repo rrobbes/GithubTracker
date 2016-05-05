@@ -24,7 +24,7 @@ fall16 = [
     {'TeraCity': {'nombre': 'Franco Sepulveda', 'user': 'francosep'}},
     {'TeraCity': {'nombre': 'Juan Rojas', 'user': 'HuanRE'}},
     {'TeraCity': {'nombre': 'Nicolas Bravo', 'user': 'NicolasBravo94'}},
-    {'TeraCity': {'nombre': 'Paulo Rios', 'user': 'burningreds'}},
+    {'TeraCity': {'nombre': 'Paula Rios', 'user': 'burningreds'}},
     {'jswingripples': {'nombre': 'Cristian Guzman', 'user': 'cguzmanp'}},
     {'jswingripples': {'nombre': 'Emilio Aburto', 'user': 'emilio-aburto'}},
     {'jswingripples': {'nombre': 'Felipe Geldres', 'user': 'fgeldres'}},

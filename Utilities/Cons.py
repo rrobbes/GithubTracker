@@ -9,6 +9,6 @@ __license__ = "MIT"
 __version__ = "1.0.0"
 __email__ = "mllorens@dcc.uchile.cl"
 
-weeks = 3
+weeks = 8
 
 sinceData = datetime.datetime.now() - datetime.timedelta(weeks=weeks)
