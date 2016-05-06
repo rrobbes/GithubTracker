@@ -33,7 +33,7 @@ fall16 = [
     {'jswingripples': {'nombre': 'Mario Garrido', 'user': 'mrlz'}},
     {'jswingripples': {'nombre': 'Natalia Vidal', 'user': 'NattoV'}},
     {'jswingripples': {'nombre': 'Rodrigo Delgado', 'user': 'Rdelgadov'}},
-    {'jswingripples': {'nombre': 'Victor Molina', 'user': 'null'}},
+    {'jswingripples': {'nombre': 'Victor Molina', 'user': 'noahmelto'}},
     {'logisim': {'nombre': 'Diego Madariaga', 'user': 'dmadariaga'}},
     {'logisim': {'nombre': 'Gabriel Dintrans', 'user': 'dintrans'}},
     {'logisim': {'nombre': 'Ismael Alvarez', 'user': 'IsmaelAlvarez'}},
