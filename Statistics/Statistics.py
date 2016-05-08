@@ -81,6 +81,15 @@ class Statistics:
             encoded_text = json.dumps(text)
             fo.write(encoded_text)
             fo.close()
+        filename = "Jsons/semester.json"
+        fo = open(filename, "w+")
+        text = "{'semester':["
+        for repository in self.statistics:
+            text += "'"+repository[0]+"',"
+        text = text[:-1]+"]}"
+        encoded_text = json.dumps(text)
+        fo.write(encoded_text)
+        fo.close()
 
 
 def merge_comments(commits, issues):
