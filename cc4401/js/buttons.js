@@ -15,17 +15,14 @@ function general_view(project) {
     $('#page-wrapper').html('');
     $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Review - '+project+'</h1> </div></div>');
     $('#page-wrapper').append('<div id="bar"></div>');
+    var datas = [];
+    for (var i in json) {
+      var d = {user: json[i].user, commits: json[i].commits.length, issues: json[i].issues.length, comments: json[i].comments.length};
+      data.push(d);
+    }
     Morris.Bar({
       element: 'bar',
-      data: [
-      { user: 'Ismael', commits: 1, issues: 3, comments: 2 },
-      { user: 'Rodrigo', commits: 2,  issues: 5, comments: 0 },
-      { user: 'Ana', commits: 2,  issues: 3, comments: 0 },
-      { user: 'Patricio', commits: 5,  issues: 2, comments: 0 },
-      { user: 'Matias', commits: 0,  issues: 0, comments: 1 },
-      { user: 'Matilde', commits: 1,  issues: 2, comments: 1 },
-      { user: 'Andrea', commits: 2, issues: 4, comments: 1 }
-      ],
+      data: datas,
       xkey: 'user',
       ykeys: ['commits', 'issues', 'comments'],
       labels: ['Commits', 'Issues', 'Comentarios'],
