@@ -69,15 +69,15 @@ def parse_users_comments(users, comments):
 
 
 def parse_commit_to_json(commit):
-    text = "{'message':'"+commit.message+"', 'time':'"+commit.time+"', 'url':'"+commit.url+"'}"
+    text = "{\"message\":\""+commit.message+"\", \"time\":\""+commit.time+"\", \"url\":\""+commit.url+"\"}"
     return text
 
 
 def parse_issue_to_json(issue):
-    text = "{'title':'"+issue.title+"', 'body':'"+issue.body+"', 'time':'"+issue.crated_time+"', 'url':'"+issue.url+"', 'assigned':'"+issue.assigned_to+"'}"
+    text = "{\"title\":\""+issue.title+"\", \"body\":\""+issue.body+"\", \"time\":\""+issue.crated_time+"\", \"url\":\""+issue.url+"\", \"assigned\":\""+issue.assigned_to+"\"}"
     return text
 
 
 def parse_comment_to_json(comment):
-    text = "{'comment':'"+comment.body+"', 'time':'"+comment.time+"', 'url':"+comment.url+"'}"
+    text = "{\"comment\":\""+comment.body+"\", \"time\":\""+comment.time+"\", \"url\":"+comment.url+"\"}"
     return text

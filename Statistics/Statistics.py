@@ -43,8 +43,6 @@ class Statistics:
 
             stat = merge_lists(commits_per_head, issues_per_head, comments_per_head)
 
-            pprint(stat)
-
             statistics.append([name, stat])
 
             print "\n"
@@ -58,21 +56,21 @@ class Statistics:
             elements = repository[1]
             for element in elements:
                 person = element[0]
-                text += "{'nombre':'"+person["nombre"]+"', 'user':'"+person["user"]+"', 'project':'"+name+"', 'commits':["
+                text += "{\"nombre\":\""+person["nombre"]+"\", \"user\":\""+person["user"]+"\", \"project\":\""+name+"\", \"commits\":["
                 for commit in element[1]:
                     text += Parsers.parse_commit_to_json(commit)+","
                 if len(element[1]) == 0:
-                    text += "'null' "
-                text = text[:-1] + "], 'issues':["
+                    text += "\"null\" "
+                text = text[:-1] + "], \"issues\":["
                 for issue in element[2]:
                     text += Parsers.parse_issue_to_json(issue)+","
                 if len(element[2]) == 0:
-                    text += "'null' "
-                text = text[:-1] + "], 'comments':["
+                    text += "\"null\" "
+                text = text[:-1] + "], \"comments\":["
                 for comment in element[3]:
                     text += Parsers.parse_comment_to_json(comment)+","
                 if len(element[3]) == 0:
-                    text += "'null' "
+                    text += "\"null\" "
                 text = text[:-1] + "]},"
             text = text[:-1] +"}"
 
@@ -83,9 +81,9 @@ class Statistics:
             fo.close()
         filename = "Jsons/semester.json"
         fo = open(filename, "w+")
-        text = "{'semester':["
+        text = "{\"semester\":["
         for repository in self.statistics:
-            text += "'"+repository[0]+"',"
+            text += "\""+repository[0]+"\","
         text = text[:-1]+"]}"
         encoded_text = json.dumps(text)
         fo.write(encoded_text)
