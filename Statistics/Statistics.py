@@ -58,15 +58,21 @@ class Statistics:
             elements = repository[1]
             for element in elements:
                 person = element[0]
-                text += "{'nombre:'"+person["nombre"]+"', 'user':'"+person["user"]+"', 'project':'"+name+"', 'commits':["
+                text += "{'nombre':'"+person["nombre"]+"', 'user':'"+person["user"]+"', 'project':'"+name+"', 'commits':["
                 for commit in element[1]:
                     text += Parsers.parse_commit_to_json(commit)+","
+                if len(element[1]) == 0:
+                    text += "'null' "
                 text = text[:-1] + "], 'issues':["
                 for issue in element[2]:
                     text += Parsers.parse_issue_to_json(issue)+","
+                if len(element[2]) == 0:
+                    text += "'null' "
                 text = text[:-1] + "], 'comments':["
                 for comment in element[3]:
                     text += Parsers.parse_comment_to_json(comment)+","
+                if len(element[3]) == 0:
+                    text += "'null' "
                 text = text[:-1] + "]},"
             text = text[:-1] +"}"
 
