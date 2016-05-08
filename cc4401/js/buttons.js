@@ -17,7 +17,8 @@ function general_view(project) {
     $('#page-wrapper').append('<div id="bar"></div>');
     var datas = [];
     for (var i in json) {
-      var d = {user: json[i].user, commits: json[i].commits.length, issues: json[i].issues.length, comments: json[i].comments.length};
+      var usr_name = json[i].nombre.substring(json[i].nombre.indexOf(" ") + 1);
+      var d = {user: usr_name, commits: json[i].commits.length, issues: json[i].issues.length, comments: json[i].comments.length};
       datas.push(d);
     }
     Morris.Bar({
