@@ -18,7 +18,7 @@ function general_view(project) {
     var datas = [];
     for (var i in json) {
       var d = {user: json[i].user, commits: json[i].commits.length, issues: json[i].issues.length, comments: json[i].comments.length};
-      data.push(d);
+      datas.push(d);
     }
     Morris.Bar({
       element: 'bar',
