@@ -51,41 +51,42 @@ class Statistics:
     def write_to_file(self):
         print "Saving to file"
         for repository in self.statistics:
-            text = "{"
+            l = list()
             name = repository[0]
             elements = repository[1]
             for element in elements:
                 person = element[0]
-                text += "{\"nombre\":\""+person["nombre"]+"\", \"user\":\""+person["user"]+"\", \"project\":\""+name+"\", \"commits\":["
+                p = {}
+                commit_list = []
+                issues_list = []
+                comment_list = []
+                p['nombre'] = person['nombre']
+                p['user'] = person['user']
+                p['project'] = name
                 for commit in element[1]:
-                    text += Parsers.parse_commit_to_json(commit)+","
-                if len(element[1]) == 0:
-                    text += "\"null\" "
-                text = text[:-1] + "], \"issues\":["
+                    commit_list.append(Parsers.parse_commit_to_json(commit))
+                p['commits'] = commit_list
                 for issue in element[2]:
-                    text += Parsers.parse_issue_to_json(issue)+","
-                if len(element[2]) == 0:
-                    text += "\"null\" "
-                text = text[:-1] + "], \"comments\":["
+                    issues_list.append(Parsers.parse_issue_to_json(issue))
+                p['issues'] = issues_list
                 for comment in element[3]:
-                    text += Parsers.parse_comment_to_json(comment)+","
-                if len(element[3]) == 0:
-                    text += "\"null\" "
-                text = text[:-1] + "]},"
-            text = text[:-1] +"}"
-
+                    comment_list.append(Parsers.parse_comment_to_json(comment))
+                p['comments'] = comment_list
+                l.append(p)
             filename = "Jsons/"+name+".json"
             fo = open(filename, "w+")
-            encoded_text = json.dumps(text)
+            encoded_text = json.dumps(l)
             fo.write(encoded_text)
             fo.close()
         filename = "Jsons/semester.json"
         fo = open(filename, "w+")
-        text = "{\"semester\":["
+        projects = []
+        d = {}
         for repository in self.statistics:
-            text += "\""+repository[0]+"\","
-        text = text[:-1]+"]}"
-        encoded_text = json.dumps(text)
+            projects.append(repository[0])
+        d['semester'] = projects
+        text = "{'semester':["
+        encoded_text = json.dumps(d)
         fo.write(encoded_text)
         fo.close()
 
@@ -105,4 +106,3 @@ def merge_lists(commits, issues, comments):
     for i in range(size):
         return_list.append([commits[i][0], commits[i][1], issues[i][1], comments[i][1]])
     return return_list
-
