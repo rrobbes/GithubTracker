@@ -4,7 +4,13 @@ function show_commits(project) {
   $.getJSON(url, function(json) {
     $('#page-wrapper').html('');
     $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Commits - '+project+'</h1> </div></div>');
-    $('#page-wrapper').append('<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading"> Ismael Alvarez (IsmaelAlvarez)<div class="pull-right">Total: 1</div> </div><div class="panel-body"> <p>message: Solucionado problema con gradle/maven<br>time: 2016-04-27 19:05:00<br>url: <a target="_blank" href="https://github.com/IsmaelAlvarez/logisim/commit/0953d5355dca7044b651c1f246314842af7d1674">https://github.com/IsmaelAlvarez/logisim/commit/0953d5355dca7044b651c1f246314842af7d1674</a></p></div></div></div></div>')
+    for (var i in json) {
+      $('#page-wrapper').append('<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+json[i].commits.length+'</div> </div>')
+      for (var j in json[i].commits) {
+        $('#page-wrapper').append('<div class="panel-body"> <p>message: '+json[i].commits[j].message+'<br>time: '+json[i].commits[j].time+'<br>url: <a target="_blank" href="'+json[i].commits[j].url+'">'+json[i].commits[j].url+'</a></p></div>')        
+      }
+      $('#page-wrapper').append('</div></div></div>');
+    }
   })
 }
 
@@ -26,7 +32,7 @@ function general_view(project) {
       data: datas,
       xkey: 'user',
       ykeys: ['commits', 'issues', 'comments'],
-      labels: ['Commits', 'Issues', 'Comentarios'],
+      labels: ['Commits', 'Issues', 'Comments'],
       stacked: true,
       resize:true
     });
