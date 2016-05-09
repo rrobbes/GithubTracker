@@ -5,14 +5,12 @@ function show_commits(project) {
     $('#page-wrapper').html('');
     $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Commits - '+project+'</h1> </div></div>');
     for (var i in json) {
-      $('#page-wrapper').append('<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+json[i].commits.length+'</div> </div><div class="panel-body"> ')
-      var body = "";
-      $('#page-wrapper').append('<p>what is love</p>');
+      var body = '<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+json[i].commits.length+'</div> </div><div class="panel-body"> ';
       for (var j in json[i].commits) {
         body = body+'<p>message: '+json[i].commits[j].message+'<br>time: '+json[i].commits[j].time+'<br>url: <a target="_blank" href="'+json[i].commits[j].url+'">'+json[i].commits[j].url+'</a></p>';
       }
+      body = body+'</div></div></div></div>'
       $('#page-wrapper').append(body);
-      $('#page-wrapper').append('</div></div></div></div>');
     }
   })
 }
