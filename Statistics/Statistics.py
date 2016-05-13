@@ -50,6 +50,7 @@ class Statistics:
 
     def write_to_file(self):
         print "Saving to file"
+        to_write = "var json_list = ["
         for repository in self.statistics:
             l = list()
             name = repository[0]
@@ -78,6 +79,8 @@ class Statistics:
             encoded_text = json.dumps(l)
             fo.write(encoded_text)
             fo.close()
+            to_write += encoded_text+','
+        to_write = to_write[:-1]+'];'
         filename = "Jsons/semester.json"
         fo = open(filename, "w+")
         projects = []
@@ -85,10 +88,14 @@ class Statistics:
         for repository in self.statistics:
             projects.append(repository[0])
         d['semester'] = projects
-        text = "{'semester':["
         encoded_text = json.dumps(d)
         fo.write(encoded_text)
         fo.close()
+        to_write += '\nvar projects_json = '+encoded_text+';'
+        js_filename = "cc4401/js/output.js"
+        fjs = open(js_filename, "w+")
+        fjs.write(to_write)
+        fjs.close()
 
 
 def merge_comments(commits, issues):
