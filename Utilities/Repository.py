@@ -23,9 +23,9 @@ class Repository:
         for branch in branches:
             self.branches.append([branch.commit.sha, branch.name])
 
-    def parse_commits(self, page_list):
+    def parse_commits(self, page_list, branch):
         for c in page_list:
-            self.commits.append(Commit.Commit(c))
+            self.commits.append(Commit.Commit(c, branch))
 
     def parse_issues(self, page_list):
         for i in page_list:
@@ -39,9 +39,9 @@ class Repository:
 
     def get_commits(self):
         if len(self.commits) == 0:
-            for sha_branch in self.branches:
-                print "Branch: "+sha_branch[1]
-                self.parse_commits(self.repo.get_commits(sha=sha_branch[0], since=self.since))
+            for branch in self.branches:
+                print "Branch: "+branch[1]
+                self.parse_commits(self.repo.get_commits(sha=branch[0], since=self.since), branch[1])
         no_repeat = {c.url:c for c in self.commits}.values()
         self.commits = sorted(no_repeat, key=lambda Commit: Commit.time, reverse=True)
         return self.commits

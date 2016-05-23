@@ -69,12 +69,14 @@ def parse_users_comments(users, comments):
 
 
 def parse_commit_to_json(commit):
-    d = {'message': commit.message, 'time': commit.time, 'url': commit.url}
+    d = {'message': commit.message, 'time': commit.time, 'url': commit.url, 'branch': commit.branch,
+         'additions': commit.additions, 'deletions': commit.deletions}
     return d
 
 
 def parse_issue_to_json(issue):
-    d = {'title': issue.title, 'body': issue.body, 'time': issue.crated_time, 'url': issue.url, 'assigned': issue.assigned_to}
+    d = {'title': issue.title, 'body': issue.body, 'time': issue.crated_time, 'url': issue.url,
+         'assigned': issue.assigned_to}
     return d
 
 
