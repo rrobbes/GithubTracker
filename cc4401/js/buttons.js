@@ -2,7 +2,6 @@ function show_commits(project) {
   project = project.replace(/\s+/g, '');
   var project_index = projects_json.semester.indexOf(project);
   var json = json_list[project_index];
-  var url = "../Jsons/"+project+".json";
   $('#page-wrapper').html('');
   $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Commits - '+project+'</h1> </div></div>');
   for (var i in json) {

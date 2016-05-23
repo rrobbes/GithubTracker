@@ -18,6 +18,10 @@ class Repository:
         self.commits = []
         self.issues = []
         self.since = Cons.sinceData
+        self.branches = []
+        branches = repo.get_branches()
+        for branch in branches:
+            self.branches.append([branch.commit.sha, branch.name])
 
     def parse_commits(self, page_list):
         for c in page_list:
@@ -35,7 +39,11 @@ class Repository:
 
     def get_commits(self):
         if len(self.commits) == 0:
-            self.parse_commits(self.repo.get_commits(since=self.since))
+            for sha_branch in self.branches:
+                print "Branch: "+sha_branch[1]
+                self.parse_commits(self.repo.get_commits(sha=sha_branch[0], since=self.since))
+        no_repeat = {c.url:c for c in self.commits}.values()
+        self.commits = sorted(no_repeat, key=lambda Commit: Commit.time, reverse=True)
         return self.commits
 
     def get_issues(self):

@@ -74,23 +74,15 @@ class Statistics:
                     comment_list.append(Parsers.parse_comment_to_json(comment))
                 p['comments'] = comment_list
                 l.append(p)
-            filename = "Jsons/"+name+".json"
-            fo = open(filename, "w+")
             encoded_text = json.dumps(l)
-            fo.write(encoded_text)
-            fo.close()
             to_write += encoded_text+','
         to_write = to_write[:-1]+'];'
-        filename = "Jsons/semester.json"
-        fo = open(filename, "w+")
         projects = []
         d = {}
         for repository in self.statistics:
             projects.append(repository[0])
         d['semester'] = projects
         encoded_text = json.dumps(d)
-        fo.write(encoded_text)
-        fo.close()
         to_write += '\nvar projects_json = '+encoded_text+';'
         js_filename = "cc4401/js/output.js"
         fjs = open(js_filename, "w+")
