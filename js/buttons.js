@@ -1,33 +1,19 @@
-function show_commits(project) {
-  project = project.replace(/\s+/g, '');
-  var project_index = projects_json.semester.indexOf(project);
-  var json = json_list[project_index];
-  $('#page-wrapper').html('');
-  $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Commits - '+project+'</h1> </div></div>');
-  for (var i in json) {
-    var body = '<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+json[i].commits.length+'</div> </div><div class="panel-body"> ';
-    for (var j in json[i].commits) {
-      body = body+'<p><b>message: '+json[i].commits[j].message+'</b><br>time: '+json[i].commits[j].time+'<br>branch: '+json[i].commits[j].branch+'<br>additions: <span class="text-success">'+json[i].commits[j].additions+'</span><br>deletions: <span class="text-danger">'+json[i].commits[j].deletions+'</span><br>url: <a target="_blank" href="'+json[i].commits[j].url+'">'+json[i].commits[j].url+'</a></p><hr>';
-    }
-    body = body+'</div></div></div></div>'
-    $('#page-wrapper').append(body);
+function show_commits(json, i) {
+  var commits = '<div class="panel panel-primary"> <div class="panel-heading">commits<div class="pull-right">Total: '+json[i].commits.length+'</div> </div><div class="panel-body"> ';
+  for (var j in json[i].commits) {
+    commits = commits+'<p><b>message: '+json[i].commits[j].message+'</b><br>time: '+json[i].commits[j].time+'<br>branch: '+json[i].commits[j].branch+'<br>additions: <span class="text-success">'+json[i].commits[j].additions+'</span><br>deletions: <span class="text-danger">'+json[i].commits[j].deletions+'</span><br>url: <a target="_blank" href="'+json[i].commits[j].url+'">'+json[i].commits[j].url+'</a></p><hr>';
   }
+  commits = commits+'</div></div>'
+  return commits;
 }
 
-function show_comments(project) {
-  project = project.replace(/\s+/g, '');
-  var project_index = projects_json.semester.indexOf(project);
-  var json = json_list[project_index];
-  $('#page-wrapper').html('');
-  $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Comments - '+project+'</h1> </div></div>');
-  for (var i in json) {
-    var body = '<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+json[i].comments.length+'</div> </div><div class="panel-body"> ';
-    for (var j in json[i].comments) {
-      body = body+'<p>message: '+json[i].comments[j].comment+'<br>time: '+json[i].comments[j].time+'<br>url: <a target="_blank" href="'+json[i].comments[j].url+'">'+json[i].comments[j].url+'</a></p><hr>';
-    }
-    body = body+'</div></div></div></div>'
-    $('#page-wrapper').append(body);
+function show_comments(json, i) {
+  var comments = '<div class="panel panel-primary"> <div class="panel-heading">comments<div class="pull-right">Total: '+json[i].comments.length+'</div> </div><div class="panel-body"> ';
+  for (var j in json[i].comments) {
+    comments = comments+'<p>message: '+json[i].comments[j].comment+'<br>time: '+json[i].comments[j].time+'<br>url: <a target="_blank" href="'+json[i].comments[j].url+'">'+json[i].comments[j].url+'</a></p><hr>';
   }
+  comments = comments+'</div></div>'
+  return comments;
 }
 
 function parse_issues(json) {
@@ -47,22 +33,15 @@ function parse_issues(json) {
   return users_issues;
 }
 
-function show_issues(project) {
-  project = project.replace(/\s+/g, '');
-  var project_index = projects_json.semester.indexOf(project);
-  var json = json_list[project_index];
+function show_issues(json, i) {
   var users_issues = parse_issues(json);
   var converter = new Markdown.Converter();
-  $('#page-wrapper').html('');
-  $('#page-wrapper').append('<div class="row"> <div class="col-lg-12"> <h1 class="page-header">Issues assigned to - '+project+'</h1> </div></div>');
-  for (var i in json) {
-    var body = '<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+users_issues[i].length+'</div> </div><div class="panel-body"> ';
-    for (var j in users_issues[i]) {
-      body = body+'<p><b>'+users_issues[i][j].title+'</b><br>'+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
-    }
-    body = body+'</div></div></div></div>'
-    $('#page-wrapper').append(body);
+  var issues = '<div class="panel panel-primary"> <div class="panel-heading">issues assigned<div class="pull-right">Total: '+users_issues[i].length+'</div> </div><div class="panel-body"> ';
+  for (var j in users_issues[i]) {
+    issues = issues+'<p><b>'+users_issues[i][j].title+'</b><br>'+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
   }
+  issues = issues+'</div></div>'
+  return issues;
 }
 
 
@@ -96,22 +75,8 @@ function general_view(project) {
 
 function show_user_info(json, i) {
   $('#user-info-name').html(json[i].nombre);
-  var commits = '<div class="panel panel-primary"> <div class="panel-heading">commits<div class="pull-right">Total: '+json[i].commits.length+'</div> </div><div class="panel-body"> ';
-  for (var j in json[i].commits) {
-    commits = commits+'<p><b>message: '+json[i].commits[j].message+'</b><br>time: '+json[i].commits[j].time+'<br>branch: '+json[i].commits[j].branch+'<br>additions: <span class="text-success">'+json[i].commits[j].additions+'</span><br>deletions: <span class="text-danger">'+json[i].commits[j].deletions+'</span><br>url: <a target="_blank" href="'+json[i].commits[j].url+'">'+json[i].commits[j].url+'</a></p><hr>';
-  }
-  commits = commits+'</div></div>'
-  var users_issues = parse_issues(json);
-  var converter = new Markdown.Converter();
-  var issues = '<div class="panel panel-primary"> <div class="panel-heading">issues assigned<div class="pull-right">Total: '+users_issues[i].length+'</div> </div><div class="panel-body"> ';
-  for (var j in users_issues[i]) {
-    issues = issues+'<p><b>'+users_issues[i][j].title+'</b><br>'+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
-  }
-  issues = issues+'</div></div>'
-  var comments = '<div class="panel panel-primary"> <div class="panel-heading">comments<div class="pull-right">Total: '+json[i].comments.length+'</div> </div><div class="panel-body"> ';
-  for (var j in json[i].comments) {
-    comments = comments+'<p>message: '+json[i].comments[j].comment+'<br>time: '+json[i].comments[j].time+'<br>url: <a target="_blank" href="'+json[i].comments[j].url+'">'+json[i].comments[j].url+'</a></p><hr>';
-  }
-  comments = comments+'</div></div>'
+  var commits = show_commits(json, i);
+  var issues = show_issues(json, i);
+  var comments = show_comments(json, i);
   $('#user-info-body').html(commits+issues+comments)
 }
