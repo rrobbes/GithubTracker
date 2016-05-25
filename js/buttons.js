@@ -58,7 +58,7 @@ function show_issues(project) {
   for (var i in json) {
     var body = '<div class="row"><div class="col-lg-12"> <div class="panel panel-primary"> <div class="panel-heading">'+json[i].nombre+' ('+json[i].user+')'+ '<div class="pull-right">Total: '+users_issues[i].length+'</div> </div><div class="panel-body"> ';
     for (var j in users_issues[i]) {
-      body = body+'<p>title: <b>'+users_issues[i][j].title+'</b><br>body: '+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
+      body = body+'<p><b>'+users_issues[i][j].title+'</b><br>'+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
     }
     body = body+'</div></div></div></div>'
     $('#page-wrapper').append(body);
@@ -105,7 +105,7 @@ function show_user_info(json, i) {
   var converter = new Markdown.Converter();
   var issues = '<div class="panel panel-primary"> <div class="panel-heading">issues assigned<div class="pull-right">Total: '+users_issues[i].length+'</div> </div><div class="panel-body"> ';
   for (var j in users_issues[i]) {
-    issues = issues+'<p>title: <b>'+users_issues[i][j].title+'</b><br>body: '+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
+    issues = issues+'<p><b>'+users_issues[i][j].title+'</b><br>'+converter.makeHtml(users_issues[i][j].body)+'<br>time: '+users_issues[i][j].time+'<br>url: <a target="_blank" href="'+users_issues[i][j].url+'">'+users_issues[i][j].url+'</a></p><hr>';
   }
   issues = issues+'</div></div>'
   var comments = '<div class="panel panel-primary"> <div class="panel-heading">comments<div class="pull-right">Total: '+json[i].comments.length+'</div> </div><div class="panel-body"> ';
