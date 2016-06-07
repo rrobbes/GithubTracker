@@ -45,7 +45,7 @@ def parse_users_from_json(repository, semester):
 def parse_users_commits(users, commits):
     specific_data = []
     for user in users:
-        data = [commit for commit in commits if user["user"] in commit.author or user["nombre"] in commit.author]
+        data = [commit for commit in commits if commit.author in user["user"] or commit.author in user["nombre"]]
         specific_data.append([user, data])
     return specific_data
 
@@ -53,7 +53,7 @@ def parse_users_commits(users, commits):
 def parse_users_issues(users, issues):
     specific_data = []
     for user in users:
-        data = [issue for issue in issues if user["user"] in issue.author]
+        data = [issue for issue in issues if issue.author in user["user"]]
         specific_data.append([user, data])
     return specific_data
 
@@ -63,7 +63,7 @@ def parse_users_comments(users, comments):
     for user in users:
         data = []
         for list_comment in comments:
-            data += [comment for comment in list_comment if user["user"] in comment.author]
+            data += [comment for comment in list_comment if comment.author in user["user"]]
         specific_data.append([user, data])
     return specific_data
 
