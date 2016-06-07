@@ -70,8 +70,10 @@ def parse_users_comments(users, comments):
 
 def parse_commit_to_json(commit):
     branch_link = 'https://github.com/Michotastico/GithubTracker/commits/'+commit.branch
+    is_merge = commit_is_merge(commit.message)
     d = {'message': commit.message, 'time': commit.time, 'url': commit.url, 'branch': commit.branch,
-         'branch_link': branch_link, 'additions': commit.additions, 'deletions': commit.deletions}
+         'branch_link': branch_link, 'additions': commit.additions, 'deletions': commit.deletions,
+         'is_merge': is_merge}
     return d
 
 
@@ -84,3 +86,11 @@ def parse_issue_to_json(issue):
 def parse_comment_to_json(comment):
     d = {'comment': comment.body, 'time': comment.time, 'url': comment.url}
     return d
+
+
+def commit_is_merge(message):
+    merge_words = ['Merge', 'branch', 'of', 'into']
+    for word in merge_words:
+        if word not in message:
+            return unicode(False)
+    return unicode(True)
