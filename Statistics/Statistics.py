@@ -63,6 +63,7 @@ class Statistics:
                 comment_list = []
                 p['nombre'] = person['nombre']
                 p['user'] = person['user']
+                p['github_link'] = 'https://github.com/'+person['user']
                 p['project'] = name
                 for commit in element[1]:
                     commit_list.append(Parsers.parse_commit_to_json(commit))

@@ -69,8 +69,9 @@ def parse_users_comments(users, comments):
 
 
 def parse_commit_to_json(commit):
+    branch_link = 'https://github.com/Michotastico/GithubTracker/commits/'+commit.branch
     d = {'message': commit.message, 'time': commit.time, 'url': commit.url, 'branch': commit.branch,
-         'additions': commit.additions, 'deletions': commit.deletions}
+         'branch_link': branch_link, 'additions': commit.additions, 'deletions': commit.deletions}
     return d
 
 
