@@ -22,20 +22,33 @@ class Statistics:
         statistics = []
         print "calculating statistics per user\n"
         for repository in self.repositories:
-            name = repository.get_name()
+            name = repository['project']
             print name
             team = Parsers.parse_users_from_json(name, self.semester)
-            print ">commits"
-            commits = repository.get_commits()
-            commits_per_head = Parsers.parse_users_commits(team, commits)
+            commits_per_head = []
+            comments_commits = []
+            comments_issue = []
+            issues_per_head = []
+            for repo in repository['repos']:
+                print "Current repo"+repo.get_name()
+                print ">commits"
+                commits = repo.get_commits()
+                commits_per_head.append(Parsers.parse_users_commits(team, commits))
 
-            print ">issues"
-            issues = repository.get_issues()
-            issues_per_head = Parsers.parse_users_issues(team, issues)
+                print ">issues"
+                issues = repo.get_issues()
+                issues_per_head.append(Parsers.parse_users_issues(team, issues))
 
-            print ">comments"
-            comments_commits = [commit.get_comments() for commit in commits]
-            comments_issue = [issue.get_comments() for issue in issues]
+                print ">comments"
+                tmp_comment_commits = [commit.get_comments() for commit in commits]
+                tmp_comment_issue = [issue.get_comments() for issue in issues]
+                if tmp_comment_commits != []:
+                    comments_commits.append(tmp_comment_commits)
+                if tmp_comment_issue != []:
+                    comments_issue.append(tmp_comment_issue)
+
+                print "\n"
+
             comments_per_head_c = Parsers.parse_users_comments(team, comments_commits)
             comments_per_head_i = Parsers.parse_users_comments(team, comments_issue)
 

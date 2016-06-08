@@ -12,10 +12,18 @@ __email__ = "mllorens@dcc.uchile.cl"
 Dictionary of project of the semester. The key is the username of the creator of the github
 project and the value is the repository's name.
 """
-fall16_projects = {'IsmaelAlvarez': 'logisim',
-                   'njara': 'mochadoom',
-                   'jSwingRipples': 'jswingripples',
-                   'TeraCityCC4401': 'Teracity'}
+fall16_projects = [
+    {'project': 'TeraCity',
+     'repos': [['TeraCityCC4401', 'Teracity']]},
+    {'project': 'mochadoom',
+     'repos': [['njara', 'mochadoom']]},
+    {'project': 'jswingripples',
+     'repos': [['jSwingRipples', 'jswingripples'],
+               ['jSwingRipples', 'eclipsePlugin'],
+               ['jSwingRipples', 'netBeansPlugin']]},
+    {'project': 'logisim',
+     'repos': [['IsmaelAlvarez', 'logisim']]}
+]
 fall16 = [
     {'TeraCity': {'nombre': 'Andres Ferrada', 'user': ['aferral']}},
     {'TeraCity': {'nombre': 'Bastian Ermann', 'user': ['bermann']}},

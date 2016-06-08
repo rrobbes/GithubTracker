@@ -20,15 +20,20 @@ def parse_comments(page_list):
 def parse_repositories(manager, projects):
     print "Parsing repositories"
     repositories = []
-    for owner, repo in projects.items():
-        users = manager.search_users(owner)
-        user = None
-        for u in users:
-            if u.login == owner:
-                user = u
-                break
-        repository = user.get_repo(repo)
-        repositories.append(Repository.Repository(repository))
+    for project in projects:
+        parsed_repo = {'project': project['project'],
+                       'repos': []}
+        repos = project['repos']
+        for repo in repos:
+            users = manager.search_users(repo[0])
+            user = None
+            for u in users:
+                if u.login == repo[0]:
+                    user = u
+                    break
+            repository = user.get_repo(repo[1])
+            parsed_repo['repos'].append(Repository.Repository(repository))
+        repositories.append(parsed_repo)
     return repositories
 
 
@@ -63,7 +68,10 @@ def parse_users_comments(users, comments):
     for user in users:
         data = []
         for list_comment in comments:
-            data += [comment for comment in list_comment if comment.author in user["user"]]
+            if len(list_comment) == 0:
+                continue
+            for l in list_comment:
+                data += [comment for comment in l if comment.author in user["user"]]
         specific_data.append([user, data])
     return specific_data
 

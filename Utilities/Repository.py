@@ -19,6 +19,7 @@ class Repository:
         self.issues = []
         self.since = Cons.sinceData
         self.branches = []
+        self.pull_requests = []
         branches = repo.get_branches()
         for branch in branches:
             self.branches.append([branch.commit.sha, branch.name])
@@ -30,6 +31,12 @@ class Repository:
     def parse_issues(self, page_list):
         for i in page_list:
             self.issues.append(Issue.Issue(i))
+
+    def parse_pulls(self, page_list):
+        for i in page_list:
+            if i.created_at < self.since:
+                continue
+            self.pull_requests.append(i)
 
     def count_commits(self):
         return len(self.commits)
@@ -53,3 +60,8 @@ class Repository:
 
     def get_name(self):
         return self.repo.name
+
+    def get_pull_request(self):
+        if len(self.pull_requests) == 0:
+            self.parse_pulls(self.repo.get_pulls())
+        return self.pull_requests
