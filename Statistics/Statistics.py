@@ -30,7 +30,7 @@ class Statistics:
             comments_issue = []
             issues_per_head = []
             for repo in repository['repos']:
-                print "Current repo"+repo.get_name()
+                print "Current repo", repo.get_name()
                 print ">commits"
                 commits = repo.get_commits()
                 commits_per_head.append(Parsers.parse_users_commits(team, commits))
@@ -42,9 +42,9 @@ class Statistics:
                 print ">comments"
                 tmp_comment_commits = [commit.get_comments() for commit in commits]
                 tmp_comment_issue = [issue.get_comments() for issue in issues]
-                if tmp_comment_commits != []:
+                if tmp_comment_commits:
                     comments_commits.append(tmp_comment_commits)
-                if tmp_comment_issue != []:
+                if tmp_comment_issue:
                     comments_issue.append(tmp_comment_issue)
 
                 print "\n"
@@ -67,16 +67,18 @@ class Statistics:
         for repository in self.statistics:
             l = list()
             name = repository[0]
+            print "Project", name
             elements = repository[1]
             for element in elements:
                 person = element[0]
+                print "Person:", person['nombre']
                 p = {}
                 commit_list = []
                 issues_list = []
                 comment_list = []
                 p['nombre'] = person['nombre']
                 p['user'] = person['user'][0]
-                p['github_link'] = 'https://github.com/'+person['user'][0]
+                p['github_link'] = 'https://github.com/'+p['user']
                 p['project'] = name
                 for commit in element[1]:
                     commit_list.append(Parsers.parse_commit_to_json(commit))
@@ -117,5 +119,5 @@ def merge_lists(commits, issues, comments):
     return_list = []
     size = len(commits)
     for i in range(size):
-        return_list.append([commits[i][0], commits[i][1], issues[i][1], comments[i][1]])
+        return_list.append([commits[0][i][0], commits[0][i][1], issues[0][i][1], comments[i][1]])
     return return_list
