@@ -40,14 +40,14 @@ for project in semester.fall16_projects:
     for repository in project['repos']:
         GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager)
 
-    output_file = "Output/"+project['project']+".js"
-    text = "var json_list = ["
+    output_file = "Output/"+project['project']+".json"
+    text = "{\"project\": \""+project['project']+"\", \"content\": ["
     text += json.dumps(commits_dict)
     text += ","
     text += json.dumps(issues_dict)
     text += ","
     text += json.dumps(comments_dict)
-    text += "];"
+    text += "]}"
     fjs = open(output_file, "w+")
     fjs.write(text)
     fjs.close()
