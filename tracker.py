@@ -51,6 +51,70 @@ for project in semester.fall16_projects:
     fjs.write(text)
     fjs.close()
 
+text = "var json_list = ["
+project_text = {
+    'semester': []
+}
+for project in semester.fall16_projects:
+    project_name = project['project']
+    project_text['semester'].append(project_name)
+
+    inner_text = "["
+
+    file_name = "Output/"+project_name+".json"
+    f_json = open(file_name, "r")
+    json_data = f_json.read()
+    json_data = json.loads(json_data)['content']
+
+    for student in semester.fall16:
+        if student['project'] != project_name:
+            continue
+        student = student['student']
+        student_text = {'project': project_name,
+                        'nombre': student['nombre'],
+                        'user': student['user'][0],
+                        'commits': [],
+                        'issues': [],
+                        'comments': []}
+        student_commits = json_data[0][student['nombre']]
+        student_issues = json_data[1][student['nombre']]
+        student_comments = json_data[2][student['nombre']]
+
+        for commit in student_commits:
+            student_text['commits'].append(commit)
+        for issue in student_issues:
+            student_text['issues'].append(issue)
+        for comment in student_comments:
+            student_text['comments'].append(comment)
+
+        for alias in student['user']:
+            student_commits = json_data[0][alias]
+            student_issues = json_data[1][alias]
+            student_comments = json_data[2][alias]
+
+            for commit in student_commits:
+                student_text['commits'].append(commit)
+            for issue in student_issues:
+                student_text['issues'].append(issue)
+            for comment in student_comments:
+                student_text['comments'].append(comment)
+
+        student_text = json.dumps(student_text)
+        inner_text += student_text
+        inner_text += ","
+    inner_text = inner_text[:-1] + "]"
+    text += inner_text + ","
+text = text[:-1] + "];"
+project_text = json.dumps(project_text)
+text += "\nvar projects_json = "
+text += project_text
+text += ";"
+
+output_file = "Output/output.js"
+fjs = open(output_file, "w+")
+fjs.write(text)
+fjs.close()
+
 print "Current time " + time.strftime("%X")
 print "done"
 
