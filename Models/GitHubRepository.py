@@ -42,12 +42,10 @@ class GitHubRepository:
                     if author in comments:
                         comments[author].append(comment_dict)
                     else:
-                        print author
                         author = author.split(' ')
                         for word in author:
                             if word in comments:
                                 comments[word].append(comment_dict)
-                                print "Founded!"
                                 break
 
                 is_merge = commit_is_merge(commit.commit.message)
@@ -64,12 +62,10 @@ class GitHubRepository:
                 if author in commits:
                     commits[author].append(commit_dict)
                 else:
-                    print author
                     author = author.split(' ')
                     for word in author:
                         if word in commits:
                             commits[word].append(commit_dict)
-                            print "Founded!"
                             break
 
             repository_issues = self.repository.get_issues(since=self.since)
@@ -83,12 +79,10 @@ class GitHubRepository:
                     if author in comments:
                         comments[author].append(comment_dict)
                     else:
-                        print author
                         author = author.split(' ')
                         for word in author:
                             if word in comments:
                                 comments[word].append(comment_dict)
-                                print "Founded!"
                                 break
 
                 assigned_candidate = issue.assignee.login if issue.assignee != None else ""
@@ -102,12 +96,10 @@ class GitHubRepository:
                 if author in issues:
                     issues[author].append(issue_dict)
                 else:
-                    print author
                     author = author.split(' ')
                     for word in author:
                         if word in issues:
                             issues[word].append(issue_dict)
-                            print "Founded!"
                             break
 
 
