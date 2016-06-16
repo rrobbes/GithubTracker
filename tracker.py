@@ -8,6 +8,7 @@ import References.Semester as semester
 import time
 from pprint import pprint
 from Models.GitHubRepository import GitHubRepository
+import json
 
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
@@ -38,7 +39,18 @@ for project in semester.fall16_projects:
                 comments_dict[alias] = []
     for repository in project['repos']:
         GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager)
-        pprint(commits_dict)
+
+    output_file = "Output/"+project['project']+".js"
+    text = "var json_list = ["
+    text += json.dumps(commits_dict)
+    text += ","
+    text += json.dumps(issues_dict)
+    text += ","
+    text += json.dumps(comments_dict)
+    text += "];"
+    fjs = open(output_file, "w+")
+    fjs.write(text)
+    fjs.close()
 
 print "Current time " + time.strftime("%X")
 print "done"

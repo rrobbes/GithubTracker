@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from pprint import pprint
+from unidecode import unidecode
 from Utilities import Cons
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
@@ -38,7 +38,17 @@ class GitHubRepository:
                     comment_dict = {'body': comment.body,
                                     'url': comment.html_url,
                                     'time': unicode(comment.created_at)}
-                    comments[comment.user.login].append(comment_dict)
+                    author = unidecode(comment.user.login)
+                    if author in comments:
+                        comments[author].append(comment_dict)
+                    else:
+                        print author
+                        author = author.split(' ')
+                        for word in author:
+                            if word in comments:
+                                comments[word].append(comment_dict)
+                                print "Founded!"
+                                break
 
                 is_merge = commit_is_merge(commit.commit.message)
                 commit_dict = {'message': commit.commit.message,
@@ -49,19 +59,37 @@ class GitHubRepository:
                                'additions': str(commit.stats.additions),
                                'deletions': str(commit.stats.deletions),
                                'is_merge': is_merge}
-                author = commit.author.login if commit.author != None else commit.commit.author.name
+                author = unidecode(commit.author.login if commit.author != None else commit.commit.author.name)
+
                 if author in commits:
                     commits[author].append(commit_dict)
                 else:
                     print author
+                    author = author.split(' ')
+                    for word in author:
+                        if word in commits:
+                            commits[word].append(commit_dict)
+                            print "Founded!"
+                            break
 
-            for issue in repository_commits:
+            repository_issues = self.repository.get_issues(since=self.since)
+            for issue in repository_issues:
                 commit_comments = issue.get_comments()
                 for comment in commit_comments:
                     comment_dict = {'body': comment.body,
                                     'url': comment.html_url,
                                     'time': unicode(comment.created_at)}
-                    comments[comment.user.login].append(comment_dict)
+                    author = comment.user.login
+                    if author in comments:
+                        comments[author].append(comment_dict)
+                    else:
+                        print author
+                        author = author.split(' ')
+                        for word in author:
+                            if word in comments:
+                                comments[word].append(comment_dict)
+                                print "Founded!"
+                                break
 
                 assigned_candidate = issue.assignee.login if issue.assignee != None else ""
                 issue_dict = {'title': issue.title,
@@ -70,11 +98,17 @@ class GitHubRepository:
                               'url': issue.html_url,
                               'assigned': assigned_candidate}
 
-                author = commit.author.login if commit.author != None else commit.commit.author.name
+                author = issue.assignee.login if issue.assignee is not None else ""
                 if author in issues:
-                    issues[author].append(commit_dict)
+                    issues[author].append(issue_dict)
                 else:
                     print author
+                    author = author.split(' ')
+                    for word in author:
+                        if word in issues:
+                            issues[word].append(issue_dict)
+                            print "Founded!"
+                            break
 
 
 def commit_is_merge(message):
