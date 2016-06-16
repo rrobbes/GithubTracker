@@ -12,9 +12,15 @@ import json
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
 __license__ = "MIT"
-__version__ = "1.0.0"
+__version__ = "1.5.0"
 __email__ = "mllorens@dcc.uchile.cl"
 
+
+def clean_duplicated(dictionary):
+    for key, value in dictionary.iteritems():
+        no_repeat = {c.url: c for c in value}.values()
+        value = sorted(no_repeat, key=lambda k: k['time'], reverse=True)
+        dictionary[key] = value
 
 login = Login.Login()
 
@@ -38,6 +44,9 @@ for project in semester.fall16_projects:
                 comments_dict[alias] = []
     for repository in project['repos']:
         GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager)
+
+    clean_duplicated(commits_dict)
+    clean_duplicated(comments_dict)
 
     output_file = "Output/"+project['project']+".json"
     text = "{\"project\": \""+project['project']+"\", \"content\": ["
@@ -117,4 +126,3 @@ fjs.close()
 
 print "Current time " + time.strftime("%X")
 print "done"
-
