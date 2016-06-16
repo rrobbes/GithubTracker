@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Class GitHubRepository who receive, parse and associate the github information of every user in the semester.
+Receive as init argument three dict (as reference) to append the data in outside vars, useful in case of multi
+repositories.
+"""
 from unidecode import unidecode
 from Utilities import Cons
 __author__ = "Michel Llorens"

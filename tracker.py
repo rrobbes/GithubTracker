@@ -6,7 +6,6 @@ Main class of the GithubTracker project
 import Utilities.Login as Login
 import References.Semester as semester
 import time
-from pprint import pprint
 from Models.GitHubRepository import GitHubRepository
 import json
 
