@@ -18,7 +18,7 @@ __email__ = "mllorens@dcc.uchile.cl"
 
 def clean_duplicated(dictionary):
     for key, value in dictionary.iteritems():
-        no_repeat = {c.url: c for c in value}.values()
+        no_repeat = {c['url']: c for c in value}.values()
         value = sorted(no_repeat, key=lambda k: k['time'], reverse=True)
         dictionary[key] = value
 
