@@ -22,6 +22,9 @@
     <!-- Morris Charts CSS -->
     <link href="css/morris.css" rel="stylesheet">
 
+    <!-- Jquery ui -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+
     <!-- Custom Fonts -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
   </head>
@@ -40,9 +43,33 @@
               <a class="navbar-brand" href="index.html">CC4401 Admin</a>
           </div>
           <!-- /.navbar-header -->
-
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <i class="fa fa-calendar fa-fw"></i>  <i class="fa fa-caret-right"></i>
+              <input class="form-control" id="datepicker-init">
+              <input class="form-control" id="datepicker-final">
+            </div>
+            <a class="btn btn-primary" onclick="updateDates()" href="#" id="update-date">Update</a>
+          </form>
           <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                          <p>Initial date: <input class="form-control" id="datepicker-init"></p>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                          <p>Final date: <input class="form-control" id="datepicker-final"></p>
+                        </li>
+                        <li>
+                          <button class="btn btn-primary" id="update-date">Update</button>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
           </ul>
           <!-- /.navbar-top-links -->
 
@@ -72,7 +99,8 @@
 
 
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <!-- Markdown to html -->
@@ -87,8 +115,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
-    <script src="https://rawgit.com/Michotastico/GithubTracker/master/cc4401/js/output.js"></script>
+    <script src="https://cdn.rawgit.com/Michotastico/GithubTracker/master/Output/output.js"></script>
     <script src="js/sidebar.js"></script>
+    <script src="js/dates.js"></script>
     <script src="js/buttons.js"></script>
 
   </body>
