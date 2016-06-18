@@ -28,7 +28,8 @@ class GitHubRepository:
                 repository_manager = candidate
                 break
         self.repository = repository_manager.get_repo(repository[1])
-
+	print unicode(repository_manager.login)
+	print unicode(repository[1])
         branches = self.repository.get_branches()
         for branch in branches:
             name_branch = branch.name
@@ -58,7 +59,7 @@ class GitHubRepository:
                                'time': unicode(commit.commit.committer.date),
                                'url': commit.commit.html_url,
                                'branch': name_branch,
-                               'branch_link': 'https://github.com/Michotastico/GithubTracker/commits/'+name_branch,
+                               'branch_link': 'https://github.com/'+unicode(repository_manager.login)+'/'+unicode(repository[1])+'/commits/'+name_branch,
                                'additions': str(commit.stats.additions),
                                'deletions': str(commit.stats.deletions),
                                'is_merge': is_merge}
