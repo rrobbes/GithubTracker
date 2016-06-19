@@ -34,7 +34,7 @@ function show_comments(json, i) {
   var comments = '<div class="panel panel-primary"> <div class="panel-heading">comments<div class="pull-right">Total: '+length_by_dates(json[i].comments)+'</div> </div><div class="panel-body"> ';
   for (var j in json[i].comments) {
     if (Date.parse(json[i].comments[j].time) >= Date.parse(init_date) && Date.parse(json[i].comments[j].time) <= Date.parse(final_date)) {
-      comments = comments+'<p>message: '+json[i].comments[j].comment+'<br>time: '+json[i].comments[j].time+'<br>url: <a target="_blank" href="'+json[i].comments[j].url+'">'+json[i].comments[j].url+'</a></p><hr>';
+      comments = comments+'<p>message: '+json[i].comments[j].body+'<br>time: '+json[i].comments[j].time+'<br>url: <a target="_blank" href="'+json[i].comments[j].url+'">'+json[i].comments[j].url+'</a></p><hr>';
     }
   }
   comments = comments+'</div></div>'
