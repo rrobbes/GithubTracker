@@ -119,6 +119,7 @@ function show_user_graph(json, i) {
     xkey: 'date',
     ykeys: ['commits', 'comments'],
     labels: ['Commits', 'Comments'],
+    barColors: ['blue','green'],
     stacked: true,
     resize:true
   })
