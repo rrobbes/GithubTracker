@@ -93,6 +93,7 @@ function general_view(project) {
     xkey: 'nombre',
     ykeys: ['commits', 'issues', 'comments'],
     labels: ['Commits', 'Issues', 'Comments'],
+    barColors: ['blue', 'gray', 'green'],
     stacked: true,
     resize:true
   }).on('click', function(i, row){
