@@ -117,8 +117,8 @@ function show_user_graph(json, i) {
     element: 'bar_user',
     data: datas,
     xkey: 'date',
-    ykeys: ['commits', 'issues', 'comments'],
-    labels: ['Commits', 'Issues', 'Comments'],
+    ykeys: ['commits', 'comments'],
+    labels: ['Commits', 'Comments'],
     stacked: true,
     resize:true
   })
