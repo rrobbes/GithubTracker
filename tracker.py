@@ -29,6 +29,7 @@ manager = login.get_user()
 print "Current time " + time.strftime("%X")
 
 for project in semester.fall16_projects:
+  #if project['project'] == 'logisim':
     print "Working on project:", project['project']
     commits_dict = {}
     issues_dict = {}

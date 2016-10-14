@@ -20,6 +20,7 @@ class GitHubRepository:
 
         self.manager = manager
         self.since = Cons.sinceData
+	print self.since
 
         candidates = manager.search_users(repository[0])
         repository_manager = None
@@ -31,7 +32,9 @@ class GitHubRepository:
 	print unicode(repository_manager.login)
 	print unicode(repository[1])
         branches = self.repository.get_branches()
-        for branch in branches:
+        """for branch in branches:
+	  #hack!!
+	  if False:
             name_branch = branch.name
             sha = branch.commit.sha
             print "> Branch", name_branch
@@ -73,15 +76,24 @@ class GitHubRepository:
                         if word in commits:
                             commits[word].append(commit_dict)
                             break
-
-            repository_issues = self.repository.get_issues(since=self.since)
-            for issue in repository_issues:
+        """
+        #repository_issues = self.repository.get_issues(since=self.since)
+	comments['default'] = []
+	issues['default'] = []
+	#print repository_issues
+	for i in range(1,5): 
+	    try:
+		issue = self.repository.get_issue(i)
+		print issue.html_url
                 commit_comments = issue.get_comments()
+		events = issue.get_events()
+		for e in events:
+			print e.actor, e.event, e.created_at
                 for comment in commit_comments:
                     comment_dict = {'body': comment.body,
                                     'url': comment.html_url,
                                     'time': unicode(comment.created_at)}
-                    author = comment.user.login
+                    author = unidecode(comment.user.login)
                     if author in comments:
                         comments[author].append(comment_dict)
                     else:
@@ -90,6 +102,9 @@ class GitHubRepository:
                             if word in comments:
                                 comments[word].append(comment_dict)
                                 break
+			    else: 
+				    print "missed!"
+				    comments['default'].append(comment_dict)
 
                 assigned_candidate = issue.assignee.login if issue.assignee != None else ""
                 issue_dict = {'title': issue.title,
@@ -98,7 +113,7 @@ class GitHubRepository:
                               'url': issue.html_url,
                               'assigned': assigned_candidate}
 
-                author = issue.assignee.login if issue.assignee is not None else ""
+                author = unidecode(issue.assignee.login) if issue.assignee is not None else ""
                 if author in issues:
                     issues[author].append(issue_dict)
                 else:
@@ -107,6 +122,12 @@ class GitHubRepository:
                         if word in issues:
                             issues[word].append(issue_dict)
                             break
+			else: 
+			    print "missed!"
+			    issues['default'].append(issue_dict)
+	    except:
+		 print 'error ...'
+	
 
 
 def commit_is_merge(message):
