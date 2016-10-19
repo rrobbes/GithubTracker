@@ -1,0 +1,133 @@
+{
+  "root": "/home/adderou/Projects/Java/Proyecto",
+  "exportName": "output_final.csv",
+  "projects": [
+    { "name": "TeraCity",
+     "repos": [{
+        "root": "TeraCityCC4401",
+        "name": "Teracity"
+      }],
+     "members": [
+       {"name": "Eduardo Riveros Roca",
+        "aliases": ["adderou"]},
+       {"name": "Andrés Ferrada",
+        "aliases": ["aferral"]},
+       {"name": "Bastian Ermann",
+        "aliases": ["bermann"]},
+       {"name": "Francisco Pulgar",
+        "aliases": ["fcopulgar"]},
+       {"name": "Franco Sepúlveda",
+        "aliases": ["francosep"]},
+       {"name": "Juan Rojas",
+        "aliases": ["HuanRE"]},
+       {"name": "Nicolás Bravo",
+        "aliases": ["NicolasBravo94",
+                  "Nicolas Antonio Bravo Ramirez",
+                  "Bravo"]},
+       {"name": "Paula Ríos",
+        "aliases": ["burningreds"]}
+      ]
+    },
+
+    { "name": "mochadoom",
+     "repos": [{
+        "root": "njara",
+        "name": "mochadoom"
+      }],
+     "members": [
+       {
+         "name": "Braulio López",
+         "aliases": ["elbraulio"]
+       },{
+         "name": "Fabián Souto",
+         "aliases": ["setaSouto"]
+       },{
+         "name": "Jaime Capponi",
+         "aliases": ["xZeok"]
+       },{
+         "name": "Javier Zambra",
+         "aliases": ["Lapnis", "Javier"]
+       },{
+         "name": "Joaquín Torres",
+         "aliases": ["juakotorres"]
+       },{
+         "name": "Matías Haeussler",
+         "aliases": ["masotrix"]
+       },{
+         "name": "Nicolás Jara",
+         "aliases": ["njara", "nicolasjara"]
+       },{
+         "name": "Pablo Gomez",
+         "aliases": ["kloness"]
+       }, {
+         "name": "Patricio Taiba",
+         "aliases": ["ptaiba"]
+       }, {
+         "name": "Rodrigo Vera",
+         "aliases": ["rodrigoveraa"]
+       }
+      ]
+    },
+    { "name": "jswingripples",
+     "repos": [
+       { 
+         "root": "jSwingRipples",
+         "name": "jswingripples"
+       },{ 
+         "root": "jSwingRipples",
+         "name": "eclipsePlugin"
+       },{ 
+         "root": "jSwingRipples",
+         "name": "netBeansPlugin"
+       }
+     ],
+     "members": [
+       {"name": "Cristian Guzman",
+        "aliases": ["cguzmanp"]},
+       {"name": "Felipe Geldres",
+        "aliases": ["fgeldres"]},
+       {"name": "Emilio Aburto",
+        "aliases": ["fcoclavero"]},
+       {"name": "Francisco Clavero",
+        "aliases": ["emilio-aburto"]},
+       {"name": "Manuel Olguín",
+        "aliases": ["molguin92"]},
+       {"name": "Mario Garrido",
+        "aliases": ["mrlz"]},
+       {"name": "Natalia Vidal",
+        "aliases": ["NattoV"]},
+       {"name": "Rodrigo Delgado",
+        "aliases": ["rdelgadov", "rodrigo delgado"]},
+       {"name": "Victor Molina",
+        "aliases": ["noahmelto"]}
+      ]
+    },
+    
+    { "name": "logisim",
+     "repos": [
+       { 
+         "root": "IsmaelAlvarez",
+         "name": "logisim"
+       }
+     ],
+     "members": [
+       {"name": "Diego Madariaga",
+        "aliases": ["dmadariaga"]},
+       {"name": "Gabriel Dintrans",
+        "aliases": ["dintrans"]},
+       {"name": "Ismael Alvarez",
+        "aliases": ["IsmaelAlvarez"]},
+       {"name": "Javier Diaz",
+        "aliases": ["javierdiazp"]},
+       {"name": "Nicolás Caracci",
+        "aliases": ["ncaracci"]},
+       {"name": "Paolo Curotto",
+        "aliases": ["paolocurotto"]},
+       {"name": "Sergio Peñafiel",
+        "aliases": ["Sergio-P"]},
+       {"name": "Vicente Rotman",
+        "aliases": ["vrotmanh"]}
+      ]
+    }
+  ]
+}

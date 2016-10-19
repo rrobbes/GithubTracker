@@ -128,45 +128,47 @@ def bugfix(commit):
 
 #with open('/Users/rr/Dropbox/cc4401/GithubTracker/out_final_maybe_test.csv') as data_file: 
 #with open('/Users/rr/Dropbox/cc4401/GithubTracker/out_final_maybe.csv') as data_file: 
-with open('/Users/rr/Dropbox/cc4401/GithubTracker/missing_commits.csv') as data_file: 
-    with open('out_missing.csv', 'w') as csvfile:
-	reader = csv.reader(data_file, quotechar='|')
-	writer = csv.writer(csvfile, quotechar='|')
-	for line in reader:
-		merge = ""
-		is_merge_cmt = ""
-		files = ""
-		jfiles = ""
-		add_char = ""
-		del_char = ""
-		add_minus_del = ""
-		refac = ""
-		bugfx = ""
-		msglen = ""
-		if line[3] == 'commit':
-			commit = line
-			projectbranch = commit[8].split('/')
-			print projectbranch
-			project = projectbranch[0]
-			branch = projectbranch[1]
-			cmt_hash = commit[-1]
-			print cmt_hash
-			merge = is_merged(commit)
-			is_merge_cmt = is_merge(commit)
-			files = nfiles(commit)
-			jfiles = njavafiles(commit)
-			add_char, del_char = diffchars(commit)
-			add_minus_del = add_char - del_char
-			refac = refactor(commit)
-			bugfx = bugfix(commit)
-			#print project, cmt_hash, nfiles(commit)
-			#print project, cmt_hash, diffchars(commit)
-			#if not is_merged(commit):
-			#	print project, cmt_hash
-			#if refactor(commit) or bugfix(commit):
-			#	print commit[6], cmt_hash
-		msglen = nchar_text(line)
-		line.extend([merge,is_merge_cmt, files,jfiles,add_char,del_char, add_minus_del, refac, bugfx, msglen])
-		writer.writerow(line)
-			
+
+def get(config):
+    with open(config["exportName"]) as data_file:
+        with open('out_missing.csv', 'w') as csvfile:
+            reader = csv.reader(data_file, quotechar='|')
+            writer = csv.writer(csvfile, quotechar='|')
+            for line in reader:
+                merge = ""
+                is_merge_cmt = ""
+                files = ""
+                jfiles = ""
+                add_char = ""
+                del_char = ""
+                add_minus_del = ""
+                refac = ""
+                bugfx = ""
+                msglen = ""
+                if line[3] == 'commit':
+                    commit = line
+                    projectbranch = commit[8].split('/')
+                    print projectbranch
+                    project = projectbranch[0]
+                    branch = projectbranch[1]
+                    cmt_hash = commit[-1]
+                    print cmt_hash
+                    merge = is_merged(commit)
+                    is_merge_cmt = is_merge(commit)
+                    files = nfiles(commit)
+                    jfiles = njavafiles(commit)
+                    add_char, del_char = diffchars(commit)
+                    add_minus_del = add_char - del_char
+                    refac = refactor(commit)
+                    bugfx = bugfix(commit)
+                    #print project, cmt_hash, nfiles(commit)
+                    #print project, cmt_hash, diffchars(commit)
+                    #if not is_merged(commit):
+                    #	print project, cmt_hash
+                    #if refactor(commit) or bugfix(commit):
+                    #	print commit[6], cmt_hash
+                msglen = nchar_text(line)
+                line.extend([merge,is_merge_cmt, files,jfiles,add_char,del_char, add_minus_del, refac, bugfx, msglen])
+                writer.writerow(line)
+
 

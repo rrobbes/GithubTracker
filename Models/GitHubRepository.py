@@ -16,21 +16,21 @@ __email__ = "mllorens@dcc.uchile.cl"
 
 class GitHubRepository:
     def __init__(self, commits, issues, comments, repository, manager):
-        print "> Repository", repository[1]
+        print "> Repository", repository['name']
 
         self.manager = manager
         self.since = Cons.sinceData
 	print self.since
 
-        candidates = manager.search_users(repository[0])
+        candidates = manager.search_users(repository['root'])
         repository_manager = None
         for candidate in candidates:
-            if candidate.login == repository[0]:
+            if candidate.login == repository['root']:
                 repository_manager = candidate
                 break
-        self.repository = repository_manager.get_repo(repository[1])
+        self.repository = repository_manager.get_repo(repository['name'])
 	print unicode(repository_manager.login)
-	print unicode(repository[1])
+	print unicode(repository['name'])
         branches = self.repository.get_branches()
         """for branch in branches:
 	  #hack!!
