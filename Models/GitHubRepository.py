@@ -17,11 +17,9 @@ __email__ = "mllorens@dcc.uchile.cl"
 class GitHubRepository:
     def __init__(self, commits, issues, comments, repository, manager):
         print "> Repository", repository['name']
-
         self.manager = manager
         self.since = Cons.sinceData
-	print self.since
-
+        print self.since
         candidates = manager.search_users(repository['root'])
         repository_manager = None
         for candidate in candidates:
@@ -29,8 +27,8 @@ class GitHubRepository:
                 repository_manager = candidate
                 break
         self.repository = repository_manager.get_repo(repository['name'])
-	print unicode(repository_manager.login)
-	print unicode(repository['name'])
+        print unicode(repository_manager.login)
+        print unicode(repository['name'])
         branches = self.repository.get_branches()
         """for branch in branches:
 	  #hack!!
@@ -81,7 +79,7 @@ class GitHubRepository:
 	comments['default'] = []
 	issues['default'] = []
 	#print repository_issues
-	for i in range(1,5): 
+	for i in range(1,5):
 	    try:
 		issue = self.repository.get_issue(i)
 		print issue.html_url
@@ -102,7 +100,7 @@ class GitHubRepository:
                             if word in comments:
                                 comments[word].append(comment_dict)
                                 break
-			    else: 
+			    else:
 				    print "missed!"
 				    comments['default'].append(comment_dict)
 
@@ -122,7 +120,7 @@ class GitHubRepository:
                         if word in issues:
                             issues[word].append(issue_dict)
                             break
-			else: 
+			else:
 			    print "missed!"
 			    issues['default'].append(issue_dict)
 	    except:

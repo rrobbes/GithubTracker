@@ -10,17 +10,16 @@ def get(config):
     # bugfix is not boolean but int
     # refac is not boolean but int
     # merge and conflict words as int, as well as being merge commit
-    if os.path.isfile("special_commits.csv"):
-        with open('special_commits.csv') as d_file:
+    if os.path.isfile(config['pathSpecialCommits']):
+        with open(config['pathSpecialCommits']) as d_file:
             reader = csv.reader(d_file, quotechar='|')
             for line in reader:
                 num, url, weight = line
                 weights[url] = float(weight)
 
 
-    #with open('out_final_definitely_ahorasi.csv') as data_file:
-    with open('out_missing.csv') as data_file:
-        with open('out_final_missing.csv', 'w') as csvfile:
+    with open(config["exportMissing"]) as data_file:
+        with open(config['exportLost'], 'w') as csvfile:
             reader = csv.reader(data_file, quotechar='|')
             writer = csv.writer(csvfile, quotechar='|')
             index = 0

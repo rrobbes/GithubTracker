@@ -23,7 +23,7 @@ def short(config):
 			if i:
 				url = line[4]
 				line[4] = shorten(url)
-				print '.'
+				#print '.'
 				if line[3] == 'commit':
 					urlwords = url.split('/')
 					the_hash = urlwords[-1]

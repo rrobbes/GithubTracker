@@ -1,6 +1,9 @@
 {
-  "root": "/home/adderou/Projects/Java/Proyecto",
-  "exportName": "output_final.csv",
+  "root": "C:/Users/andres/reposta",
+  "exportName": "results/output_final.csv",
+  "exportMissing" : "results/out_missing.csv",
+  "exportLost" : "results/out_lost.csv",
+  "pathSpecialCommits" : "results/special_commits.csv",
   "projects": [
     { "name": "TeraCity",
      "repos": [{

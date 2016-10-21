@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+
 import Utilities.Login as Login
-import tracker
-import flatten
 import missing_commits
+import tracker
 import xtrametrics
 import xtraxtrametrics
+from Utilities import flatten
 
 # Cargamos la configuración de config.json
 login = Login.Login()

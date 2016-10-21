@@ -1,4 +1,5 @@
-import cd
+from Utilities import cd
+
 
 def get_change_log(repo):
 	cmd = 'git log --date=local --pretty="format:%at" --name-status --reverse'

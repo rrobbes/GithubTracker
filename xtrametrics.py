@@ -1,7 +1,6 @@
-import cd
-import git
 import csv
 
+from Utilities import cd
 
 root = '/Users/rr/Desktop/cc4401/projects/2016-1/'
 
@@ -106,7 +105,7 @@ def njavafiles(commit):
 
 def is_merge(commit):
 	projectbranch = commit[8].split('/')
-        project = projectbranch[0]
+	project = projectbranch[0]
 	branch = projectbranch[1]
 	cmt_hash = commit[-1]
 	cmd = "git log --pretty=%P -n 1 " + cmt_hash  
@@ -126,12 +125,9 @@ def bugfix(commit):
 	return 'fix' in commit[6]
 
 
-#with open('/Users/rr/Dropbox/cc4401/GithubTracker/out_final_maybe_test.csv') as data_file: 
-#with open('/Users/rr/Dropbox/cc4401/GithubTracker/out_final_maybe.csv') as data_file: 
-
 def get(config):
     with open(config["exportName"]) as data_file:
-        with open('out_missing.csv', 'w') as csvfile:
+        with open(config["exportMissing"], 'w') as csvfile:
             reader = csv.reader(data_file, quotechar='|')
             writer = csv.writer(csvfile, quotechar='|')
             for line in reader:
