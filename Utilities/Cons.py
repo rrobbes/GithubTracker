@@ -12,3 +12,5 @@ __email__ = "mllorens@dcc.uchile.cl"
 weeks = 50
 
 sinceData = datetime.datetime.now() - datetime.timedelta(weeks=weeks)
+user=''
+passw=''

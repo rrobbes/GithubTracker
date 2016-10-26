@@ -20,16 +20,19 @@ def flat(config):
         data = json.load(data_file)
 
     def add_commit(p, u, cmt):
-        row = [cmt['time'], p, u, 'commit', cmt['url'], '', cmt['message'], '', cmt['branch'], cmt['branch_link'],
-               cmt['is_merge'] == 'True', int(cmt['additions']), int(cmt['deletions'])]
+        # row = ['COMMIT'+cmt['time'], p, u, 'commit', cmt['url'], '', cmt['message'], '', cmt['branch'], cmt['branch_link'],   TODO CRITICO QUE HACER CON ADD Y DEL
+        #        cmt['is_merge'] == 'True', int(cmt['additions']), int(cmt['deletions'])]
+        row = ['COMMIT' + cmt['time'], p, u, 'commit', cmt['url'], '', cmt['message'], '', cmt['branch'],
+               cmt['branch_link'],
+               cmt['is_merge'] == 'True', 0, 0]
         header.append(row)
 
     def add_comment(p, u, cmt):
-        row = [cmt['time'], p, u, 'comment', cmt['url'], '', cmt['body'], '', '', '', '', '', '']
+        row = ['COMMENT'+cmt['time'], p, u, 'comment', cmt['url'], '', cmt['body'], '', '', '', '', '', '']
         header.append(row)
 
     def add_issue(p, u, cmt):
-        row = [cmt['time'], p, u, 'issue', cmt['url'], cmt['title'], cmt['body'], cmt['assigned'], '', '', '', '', '']
+        row = ['ISSUE'+cmt['time'], p, u, 'issue', cmt['url'], cmt['title'], cmt['body'], cmt['assigned'], '', '', '', '', '']
         header.append(row)
 
     for project in data:

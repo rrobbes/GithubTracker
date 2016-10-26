@@ -73,13 +73,13 @@
     },
     { "name": "jswingripples",
      "repos": [
-       { 
+       {
          "root": "jSwingRipples",
          "name": "jswingripples"
-       },{ 
+       },{
          "root": "jSwingRipples",
          "name": "eclipsePlugin"
-       },{ 
+       },{
          "root": "jSwingRipples",
          "name": "netBeansPlugin"
        }
