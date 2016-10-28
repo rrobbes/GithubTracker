@@ -3,63 +3,27 @@
 
 import sys
 import json
-import csv
+import unicodecsv as csv
 import string
 
+"""
+flat takes a list of dict (see reports) and output a csv with the data.
+name = is the filename of the output
+headerOrder = is the list of keys to use in the csv (added in the same order of the list)
+data = the list of dicts.
 
-def flat(config):
-    print sys.getdefaultencoding()
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+Output example:
 
-    header = [
-        ['time', 'project', 'user', 'type', 'url', 'title', 'body', 'assigned', 'branch', 'branch_link', 'merge', 'add',
-         'del']]
+h1,h2,h3,h4 \n
+d11,d12,d13,d14 \n
+d21,d22,d23,d24 \n
+....
 
-    with open('Output/output.json') as data_file:
-        data = json.load(data_file)
-
-    def add_commit(p, u, cmt):
-        # row = ['COMMIT'+cmt['time'], p, u, 'commit', cmt['url'], '', cmt['message'], '', cmt['branch'], cmt['branch_link'],   TODO CRITICO QUE HACER CON ADD Y DEL
-        #        cmt['is_merge'] == 'True', int(cmt['additions']), int(cmt['deletions'])]
-        row = ['COMMIT' + cmt['time'], p, u, 'commit', cmt['url'], '', cmt['message'], '', cmt['branch'],
-               cmt['branch_link'],
-               cmt['is_merge'] == 'True', 0, 0]
-        header.append(row)
-
-    def add_comment(p, u, cmt):
-        row = ['COMMENT'+cmt['time'], p, u, 'comment', cmt['url'], '', cmt['body'], '', '', '', '', '', '']
-        header.append(row)
-
-    def add_issue(p, u, cmt):
-        row = ['ISSUE'+cmt['time'], p, u, 'issue', cmt['url'], cmt['title'], cmt['body'], cmt['assigned'], '', '', '', '', '']
-        header.append(row)
-
-    for project in data:
-        for user in project:
-            u = user['name']
-            p = user['project']
-            for commit in user['commits']:
-                add_commit(p, u, commit)
-            for comment in user['comments']:
-                add_comment(p, u, comment)
-            for bug in user['issues']:
-                add_issue(p, u, bug)
-            print
-
-    for r in header:
-        body = r[6]
-        body = string.replace(body, ',', ';')
-        body = string.replace(body, '\n', '   ')
-        body = string.replace(body, '\r', '   ')
-        r[6] = body
-        title = r[5]
-        title = string.replace(title, ',', ';')
-        title = string.replace(title, '\n', '   ')
-        title = string.replace(title, '\r', '   ')
-        r[5] = title
-
-    with open(config["exportName"], 'w') as csvfile:
-        writer = csv.writer(csvfile, quotechar='|')
-        for r in header:
-            writer.writerow(r)
+"""
+def flat(name,headerOrder,data):
+    with open(name, 'w') as csvfile:
+        writer = csv.writer(csvfile, quotechar='"', quoting=csv.QUOTE_ALL, dialect='excel', encoding='utf-8') #TODO replacec None values
+        writer.writerow(headerOrder)
+        for row in data:
+            sortedByHeaderOrder = [row[key] for key in headerOrder]
+            writer.writerow(sortedByHeaderOrder)

@@ -3,10 +3,9 @@
 import json
 
 import Utilities.Login as Login
-import missing_commits
 import tracker
-import xtrametrics
-import xtraxtrametrics
+import eventReport
+import contribReport
 from Utilities import flatten
 import time
 
@@ -22,12 +21,8 @@ manager = login.get_user()
 # Se realiza el tracking
 print "Realizando el tracking con la cuenta de github..."
 tracker.track(config, manager)
-# Ahora se realiza el flattening del archivo
-print "Transformando el archivo generado a csv..."
-flatten.flat(config)
-# Ahora se consiguen los commits desde los repo
-print "Buscando información de commits desde los repos locales..."
-missing_commits.get(config)
+
+
 # Ahora se crean los archivos .gitattributes
 print "Creando archivos .gitattributes en repos locales..."
 for project in config["projects"]:
@@ -37,8 +32,8 @@ for project in config["projects"]:
 
 # Calcular las métricas extra
 print "Calculando métricas..."
-xtrametrics.get(config)
-print "Calculando más métricas..."
-xtraxtrametrics.get(config)
+eventReport.get(config)
+contribReport.get(config)
+
 print "Listo! El archivo con todo lo necesario es 'out_final_missing.csv'"
 print "Tiempo de ejecucion completo ",time.time()-start,' segundos '
