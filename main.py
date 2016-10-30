@@ -3,14 +3,8 @@
 import json
 
 import Utilities.Login as Login
-import tracker
-import flatten
-import all_commits
-import missing_commits
-import tracker
-import xtrametrics
-import xtraxtrametrics
-from Utilities import flatten
+import Utilities.tracker as tracker
+from Utilities import flatten, all_commits, tracker, xtrametrics, xtraxtrametrics
 import time
 
 start=time.time()

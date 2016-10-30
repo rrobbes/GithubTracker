@@ -17,19 +17,25 @@ def get(config):
         for project in config['projects']:
             for repo in project['repos']:
                 p = root + "/" + repo["name"]
-                branches = cd.then_do(p,"git branch -r").split("\n");
-                for cbranch in branches:
-                    branch = "/".join(cbranch.split("/")[1:]) # Quito el origin
+                branches = cd.then_do(p,"git branch -r")
+                for rawbranch in branches:
+                    cbranch = rawbranch.split(" -> ")[0]
+                    branch = "/".join(cbranch.split("/")[1:]).strip() # Quito el origin
+                    print "branch: ", branch
                     branchurl = "https://www.github.com/"+repo["root"]+"/"+repo["name"]+"/commits/"+branch
                     cd.then_print(p,"git checkout "+branch)
                     cd.then_print(p,"git pull")
-                    cmd = "git log "+branch+" --pretty=format:'%n%H%n%ai%n%s%n%an%ae' --numstat"
-                    commits = cd.then_do(p, cmd).split("\n");
+                    cmd = "git log "+branch+" --after'"+config["startDate"]+"' --before='"+config["endDate"]+"' --pretty=format:'%n%H%n%ai%n%s%n%an%n%ae' --numstat"
+                    print cmd
+                    c = cd.then_do(p, cmd)
+                    commits = []
+                    for line in c:
+                        commits.append(line)
                     i=1; # Primera linea siempre es un enter
                     while (i<len(commits)):
                         commit = commits[i]
                         i += 1
-                        date = commits[i].split[" "]
+                        date = commits[i].split(" ")
                         time = date[0]+" "+date[1]
                         i += 1
                         summary = commits[i]
@@ -45,19 +51,20 @@ def get(config):
                         statnum=0
                         add=0
                         rem=0
-                        while (len(commits[i]) != 1):
+                        while (commits[i]=="\n"):
                             commitline = commits[i]
-                            addrm = re.findall(r'\d+',commitline)
-                            statnum += 1
-                            add += addrm[0]
-                            rm += addrm[1]
                             i += 1
-                        while (i < len(commits) and len(commits[i] ==1)):
+                            addrm = re.findall(r'\d+',commitline)
+                            print addrm
+                            statnum += 1
+                            add += int(addrm[0])
+                            rem += int(addrm[1])
+                        while (i < len(commits) and commits[i]=="\n"):
                             i += 1 #Saltar los enters, a veces hay uno y otras dos
 
                         # el cursor debería estar posicionado en el próximo caso,
                         # o en ninguno si es el último
-                        r = [time,repo["name"],author,"commit",url,"",summary,"",branch,branchurl,merge,add,rem,commit]
-                        writer.writerow(l)
+                        r = ",".join([time,repo["name"],author,"commit",url,"",summary,"",branch,branchurl,str(merge),str(add),str(rem),commit])
+                        writer.writerow(r)
 
 
