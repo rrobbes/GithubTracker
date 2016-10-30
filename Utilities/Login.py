@@ -4,6 +4,7 @@ Class for login purpose
 """
 import getpass
 from github import Github
+import Cons
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
 __license__ = "MIT"

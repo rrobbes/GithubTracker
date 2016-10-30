@@ -1,6 +1,6 @@
-import cd
-import git
 import csv
+
+from Utilities import cd
 
 
 def get(config):
@@ -13,8 +13,8 @@ def get(config):
 		for project in config['projects']:
 			for repo in project['repos']:
 				p = root + "/" + repo["name"]
-				cd.then_print(p,"git checkout")
-				cd.then_print(p,"git update")
+				cd.then_print(p, "git checkout")
+				cd.then_print(p, "git update")
 				cmd = "git log --pretty=%H --after=2016/04/01 --before=2016/04/28"
 				hashes = cd.then_do(p, cmd)
 				for hsh in hashes:

@@ -2,9 +2,10 @@ import os
 
 
 def then_do(path, command):
-	path = "cd "+ path
-	cmd = path + ';' + command
-	stream = os.popen(cmd)
+	oldPath = os.getcwd()
+	os.chdir(path)
+	stream = os.popen(command)
+	os.chdir(oldPath)
 	return stream
 
 
