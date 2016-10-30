@@ -64,7 +64,7 @@ def get(config):
 
                         # el cursor debería estar posicionado en el próximo caso,
                         # o en ninguno si es el último
-                        r = ",".join([time,repo["name"],author,"commit",url,"",summary,"",branch,branchurl,str(merge),str(add),str(rem),commit])
+                        r = ",".join([time,repo["name"],author,"commit",url,"",summary,"",repo["name"]+"/"+branch,branchurl,str(merge),str(add),str(rem),commit])
                         writer.writerow(r)
 
 
