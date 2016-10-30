@@ -4,6 +4,7 @@ import json
 import Utilities.Login as Login
 import tracker
 import flatten
+import all_commits
 import missing_commits
 import xtrametrics
 import xtraxtrametrics
@@ -24,7 +25,7 @@ print "Transformando el archivo generado a csv..."
 flatten.flat(config)
 # Ahora se consiguen los commits desde los repo
 print "Buscando información de commits desde los repos locales..."
-missing_commits.get(config)
+all_commits.get(config)
 # Ahora se crean los archivos .gitattributes
 print "Creando archivos .gitattributes en repos locales..."
 for project in config["projects"]:
