@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import cd
-import git
-import csv
 import re
 
 

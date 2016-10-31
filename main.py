@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+import time
 
 import Utilities.Login as Login
-import tracker
-import eventReport
-import contribReport
-from Utilities import flatten, all_commits, tracker, xtrametrics, xtraxtrametrics
-import time
+from Utilities import all_commits, tracker
+from reports import eventReport, contribReport
 
 start=time.time()
 # Cargamos la configuración de config.json
@@ -22,10 +20,6 @@ manager = login.get_user()
 print "Realizando el tracking con la cuenta de github..."
 tracker.track(config, manager)
 
-
-# Ahora se realiza el flattening del archivo
-print "Transformando el archivo generado a csv..."
-flatten.flat(config)
 # Ahora se consiguen los commits desde los repo
 print "Buscando información de commits desde los repos locales..."
 all_commits.get(config)

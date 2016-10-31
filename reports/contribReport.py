@@ -1,10 +1,10 @@
 import csv
-import os
 import json
+import os
 
 from Utilities.flatten import flat
-from eventReport import preprocessing, header, applyMetrics
 from metrics.rowFunctions import add_minus_del, total_contrib
+from reports.eventReport import preprocessing, header, applyMetrics
 
 output_csv = "Output/OutContribReport.csv"
 output_file = "Output/OutContribReport.json"
@@ -25,6 +25,7 @@ def get(config):
         data = json.load(data_file)
 
     tabla = preprocessing(data)
+
 
     filtroCommit = lambda f, r: f(r) if r['type'] == 'COMMIT' else None
     weighted_contrib = lambda r : weights[url] * total_contrib(r) if (r['url'] in weights) else total_contrib(r)

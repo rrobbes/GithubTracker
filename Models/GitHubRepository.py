@@ -7,7 +7,6 @@ repositories.
 """
 from unidecode import unidecode
 from Utilities import Cons
-from getNCommits import queryAllCommitsBranch
 from Utilities import all_commits
 
 __author__ = "Michel Llorens"
@@ -34,49 +33,7 @@ class GitHubRepository:
         print unicode(repository['name'])
         branches = self.repository.get_branches()
 
-        for branch in branches:
-            name_branch = branch.name
-            sha = branch.commit.sha
-            print "> Branch", name_branch
-
-            repository_commits = queryAllCommitsBranch(self.repository._requester,repository['root'],repository['name'],name_branch,stopAt=Cons.sinceData)
-            #repository_commits = []
-            for commit in repository_commits:
-                #Getting the comment object is a expensive operation
-                if commit['commit']['comment_count'] > 0:
-                    commit_comments = self.repository.get_commit(commit['sha']).get_comments()
-                    for comment in commit_comments:
-                        comment_dict = {'body': comment.body,
-                                        'url': comment.html_url,
-                                        'time': unicode(comment.created_at)}
-                        author = unidecode(comment.user.login)
-                        if author in comments:
-                            comments[author].append(comment_dict)
-                        else:
-                            author = author.split(' ')
-                            for word in author:
-                                if word in comments:
-                                    comments[word].append(comment_dict)
-                                    break
-                # cmobj  = self.repository.get_commit(commit['sha'])
-                commit_dict = {'message': commit['commit']['message'],
-                               'time': unicode(commit['commit']['committer']['date']),
-                               'url': commit['html_url'],
-                               'branch': name_branch,
-                               'branch_link': 'https://github.com/'+unicode(repository_manager.login)+'/'+unicode(repository['name'])+'/commits/'+name_branch,
-                               # 'additions': str(cmobj.stats.raw_data['additions']),
-                               # 'deletions': str(cmobj.stats.raw_data['deletions']),
-                               'is_merge': commit_is_merge(commit['commit']['message'])}
-                author = unidecode(commit['commit']['author']['name'] if commit['author'] == None else commit['author']['login'])
-
-                if author in commits:
-                    commits[author].append(commit_dict)
-                else:
-                    author = author.split(' ')
-                    for word in author:
-                        if word in commits:
-                            commits[word].append(commit_dict)
-                            break
+        #TODO GET COMMENTS https://developer.github.com/v3/repos/comments/
 
         allcommits = all_commits.get(config,repository)
         for commit in allcommits:
