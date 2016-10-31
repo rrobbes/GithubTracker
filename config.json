@@ -1,9 +1,11 @@
 {
-  "root": "C:/Users/andres/reposta",
+  "root": "/home/adderou/Projects/Java/Proyecto/",
   "exportName": "results/output_final.csv",
   "exportMissing" : "results/out_missing.csv",
   "exportLost" : "results/out_lost.csv",
   "pathSpecialCommits" : "results/special_commits.csv",
+  "startDate": "2016-08-01",
+  "endDate": "2016-11-01",
   "projects": [
     { "name": "TeraCity",
      "repos": [{

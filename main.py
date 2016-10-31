@@ -7,6 +7,8 @@ import tracker
 import eventReport
 import contribReport
 from Utilities import flatten
+import Utilities.tracker as tracker
+from Utilities import flatten, all_commits, tracker, xtrametrics, xtraxtrametrics
 import time
 
 start=time.time()
@@ -23,6 +25,12 @@ print "Realizando el tracking con la cuenta de github..."
 tracker.track(config, manager)
 
 
+# Ahora se realiza el flattening del archivo
+print "Transformando el archivo generado a csv..."
+flatten.flat(config)
+# Ahora se consiguen los commits desde los repo
+print "Buscando información de commits desde los repos locales..."
+all_commits.get(config)
 # Ahora se crean los archivos .gitattributes
 print "Creando archivos .gitattributes en repos locales..."
 for project in config["projects"]:
