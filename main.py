@@ -20,9 +20,6 @@ manager = login.get_user()
 print "Realizando el tracking con la cuenta de github..."
 tracker.track(config, manager)
 
-# Ahora se consiguen los commits desde los repo
-print "Buscando información de commits desde los repos locales..."
-all_commits.get(config)
 # Ahora se crean los archivos .gitattributes
 print "Creando archivos .gitattributes en repos locales..."
 for project in config["projects"]:

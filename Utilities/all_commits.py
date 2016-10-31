@@ -28,21 +28,16 @@ def get(config,repo):
                     chash = elem
                 counter += 1
         branch = "/".join(cbranch.split("/")[1:]).strip() # Quito el origin
-        print "branch: ", repo["name"]+"/"+unicode(branch,"utf-8")
         branchurl = u"https://www.github.com/" + repo["root"] + u"/" + repo["name"] + u"/commits/" + unicode(branch,"utf-8")
         cd.then_print(p,"git checkout "+branch)
         cd.then_print(p,"git pull")
         cmd = u"git log " + chash + u" --after='" + config["startDate"] + u"' --before='" + config["endDate"] + "' --pretty=format:'%n%H%n%ai%n%s%n%an%n%ae' --numstat"
-        print cmd
         commits = cd.then_do(p, cmd)
-        for line in commits:
-            print line;
         i=1; # Primera linea siempre es un enter
         while (i<len(commits)):
             commit = commits[i]
             i += 1
             date = commits[i].split(" ")
-            print date
             time = date[0]+" "+date[1]
             i += 1
             summary = commits[i]
@@ -62,13 +57,12 @@ def get(config,repo):
                 commitline = commits[i]
                 i += 1
                 addrm = re.findall(r'\d+',commitline)
-                print addrm
                 while (len(addrm)<2):
                     addrm.append("0")
                 statnum += 1
                 add += int(addrm[0])
                 rem += int(addrm[1])
-            while (i < len(commits) and commits[i]==""):
+            while (i < len(commits) and len(commits[i]) != 10):
                 i += 1 #Saltar los enters, a veces hay uno y otras dos
 
             # el cursor debería estar posicionado en el próximo caso,
