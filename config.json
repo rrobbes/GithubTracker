@@ -7,6 +7,32 @@
   "startDate": "2016-08-01",
   "endDate": "2016-11-01",
   "projects": [
+    { "name": "logisim",
+     "repos": [
+       {
+         "root": "IsmaelAlvarez",
+         "name": "logisim"
+       }
+     ],
+     "members": [
+       {"name": "Diego Madariaga",
+        "aliases": ["dmadariaga"]},
+       {"name": "Gabriel Dintrans",
+        "aliases": ["dintrans"]},
+       {"name": "Ismael Alvarez",
+        "aliases": ["IsmaelAlvarez"]},
+       {"name": "Javier Diaz",
+        "aliases": ["javierdiazp"]},
+       {"name": "Nicolás Caracci",
+        "aliases": ["ncaracci"]},
+       {"name": "Paolo Curotto",
+        "aliases": ["paolocurotto"]},
+       {"name": "Sergio Peñafiel",
+        "aliases": ["Sergio-P"]},
+       {"name": "Vicente Rotman",
+        "aliases": ["vrotmanh"]}
+      ]
+    },
     { "name": "TeraCity",
      "repos": [{
         "root": "TeraCityCC4401",
@@ -27,7 +53,7 @@
         "aliases": ["HuanRE"]},
        {"name": "Nicolás Bravo",
         "aliases": ["NicolasBravo94",
-                  "Nicolas Antonio Bravo Ramirez",
+                  "Nicolás Antonio Bravo Ramírez",
                   "Bravo"]},
        {"name": "Paula Ríos",
         "aliases": ["burningreds"]}
@@ -105,33 +131,6 @@
         "aliases": ["rdelgadov", "rodrigo delgado"]},
        {"name": "Victor Molina",
         "aliases": ["noahmelto"]}
-      ]
-    },
-
-    { "name": "logisim",
-     "repos": [
-       {
-         "root": "IsmaelAlvarez",
-         "name": "logisim"
-       }
-     ],
-     "members": [
-       {"name": "Diego Madariaga",
-        "aliases": ["dmadariaga"]},
-       {"name": "Gabriel Dintrans",
-        "aliases": ["dintrans"]},
-       {"name": "Ismael Alvarez",
-        "aliases": ["IsmaelAlvarez"]},
-       {"name": "Javier Diaz",
-        "aliases": ["javierdiazp"]},
-       {"name": "Nicolás Caracci",
-        "aliases": ["ncaracci"]},
-       {"name": "Paolo Curotto",
-        "aliases": ["paolocurotto"]},
-       {"name": "Sergio Peñafiel",
-        "aliases": ["Sergio-P"]},
-       {"name": "Vicente Rotman",
-        "aliases": ["vrotmanh"]}
       ]
     }
   ]

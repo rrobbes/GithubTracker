@@ -8,6 +8,7 @@ repositories.
 from unidecode import unidecode
 from Utilities import Cons
 from getNCommits import queryAllCommitsBranch
+from Utilities import all_commits
 
 __author__ = "Michel Llorens"
 __copyright__ = "Copyright 2016"
@@ -17,7 +18,7 @@ __email__ = "mllorens@dcc.uchile.cl"
 
 
 class GitHubRepository:
-    def __init__(self, commits, issues, comments, repository, manager):
+    def __init__(self, commits, issues, comments, repository, manager,config):
         print "> Repository", repository['name']
         self.manager = manager
         self.since = Cons.sinceData
@@ -76,6 +77,29 @@ class GitHubRepository:
                         if word in commits:
                             commits[word].append(commit_dict)
                             break
+
+        allcommits = all_commits.get(config,repository)
+        for commit in allcommits:
+            author = commit["author"]
+            trimmedCommit ={
+               'commit_id': commit["commit_id"],
+               'message': commit["message"],
+               'time': commit["time"],
+               'url': commit["url"],
+               'branch': commit["branch"],
+               'branch_link': commit["branch_link"],
+               'additions': commit['additions'],
+               'deletions': commit['deletions'],
+               'is_merge': commit["is_merge"]}
+
+            if author in commits:
+                commits[author].append(trimmedCommit)
+            else:
+                author = author.split(' ')
+                for word in author:
+                    if word in commits:
+                        commits[word].append(trimmedCommit)
+                        break
         #repository_issues = self.repository.get_issues(since=self.since)
         comments['default'] = []
         issues['default'] = []

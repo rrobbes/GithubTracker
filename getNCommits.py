@@ -35,7 +35,7 @@ def queryAllCommitsBranch(requester,owner,repo,branch,stopAt=None):
         else:
             print 'Could not get ',owner,' ',repo,' info. Status : ',status
             tries += 1
-            if tries > 10:
+            if tries > 9:
                 raise Exception(tries,' tries have passed couldnt get info')
     print "Returning ",len(allCommits)," elements"
     return allCommits

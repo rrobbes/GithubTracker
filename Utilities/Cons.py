@@ -16,5 +16,5 @@ config = json.load(open('config.json'))
 root = config['root']
 
 sinceData = datetime.datetime.now() - datetime.timedelta(weeks=weeks)
-user=''
-passw=''
+user='adderou'
+passw='efmhcfcyk1208'

@@ -6,8 +6,6 @@ import Utilities.Login as Login
 import tracker
 import eventReport
 import contribReport
-from Utilities import flatten
-import Utilities.tracker as tracker
 from Utilities import flatten, all_commits, tracker, xtrametrics, xtraxtrametrics
 import time
 

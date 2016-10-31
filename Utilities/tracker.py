@@ -37,7 +37,7 @@ def track(config, manager):
                 issues_dict[alias] = []
                 comments_dict[alias] = []
         for repository in project['repos']:
-            GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager)
+            GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager,config)
 
         clean_duplicated(commits_dict)
         clean_duplicated(comments_dict)
