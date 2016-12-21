@@ -28,19 +28,23 @@ def track(config, manager):
         commits_dict = {}
         issues_dict = {}
         comments_dict = {}
+        events_dict = {}
         for student in project['members']:
             commits_dict[student['name']] = []
             issues_dict[student['name']] = []
             comments_dict[student['name']] = []
+            events_dict[student['name']] = []
             for alias in student['aliases']:
                 commits_dict[alias] = []
                 issues_dict[alias] = []
                 comments_dict[alias] = []
+                events_dict[alias] = []
         for repository in project['repos']:
-            GitHubRepository(commits_dict, issues_dict, comments_dict, repository, manager,config)
+            GitHubRepository(commits_dict, issues_dict, comments_dict, events_dict, repository, manager,config)
 
         clean_duplicated(commits_dict)
         clean_duplicated(comments_dict)
+        clean_duplicated(events_dict)
 
         output_file = "Output/"+project['name']+".json"
         text = "{\"project\": \""+project['name']+"\", \"content\": ["
@@ -49,6 +53,8 @@ def track(config, manager):
         text += json.dumps(issues_dict)
         text += ","
         text += json.dumps(comments_dict)
+        text += ","
+        text += json.dumps(events_dict)
         text += "]}"
         fjs = open(output_file, "w+")
         fjs.write(text)
@@ -76,10 +82,12 @@ def track(config, manager):
                             'user': student['aliases'][0],
                             'commits': [],
                             'issues': [],
-                            'comments': []}
+                            'comments': [],
+                            'events': []}
             student_commits = json_data[0][student['name']]
             student_issues = json_data[1][student['name']]
             student_comments = json_data[2][student['name']]
+            student_events = json_data[3][student['name']]
 
             for commit in student_commits:
                 student_text['commits'].append(commit)
@@ -87,11 +95,14 @@ def track(config, manager):
                 student_text['issues'].append(issue)
             for comment in student_comments:
                 student_text['comments'].append(comment)
+            for event in student_events:
+                student_text['events'].append(event)
 
             for alias in student['aliases']:
                 student_commits = json_data[0][alias]
                 student_issues = json_data[1][alias]
                 student_comments = json_data[2][alias]
+                student_events = json_data[3][alias]
 
                 for commit in student_commits:
                     student_text['commits'].append(commit)
@@ -99,6 +110,8 @@ def track(config, manager):
                     student_text['issues'].append(issue)
                 for comment in student_comments:
                     student_text['comments'].append(comment)
+                for event in student_events:
+                    student_text['events'].append(event)
 
             student_text = json.dumps(student_text)
             inner_text += student_text

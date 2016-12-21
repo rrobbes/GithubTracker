@@ -1,20 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import json
+#import simplejson as json
 import time
 
+from unidecode import unidecode
 import Utilities.Login as Login
 from Utilities import all_commits, tracker
 from reports import eventReport, contribReport
 
+import sys
+reload(sys)
+sys.setdefaultencoding('latin-1')
+
 start=time.time()
-# Cargamos la configuración de config.json
-login = Login.Login()
 # Se lee el archivo de config
+# Cargamos la configuración de config.json
 print "Leyendo configuración..."
-config = json.load(open('config.json'))
+config = json.load(open("config.json"))
+#print config
+for member in config["projects"][0]["members"]:
+    for alias in  member["aliases"]:
+        print str(alias)
 # Se consigue el usuario correspondiente
 print "Iniciando Sesión en Github..."
+
+login = Login.Login(config["user"])
 manager = login.get_user()
 # Se realiza el tracking
 print "Realizando el tracking con la cuenta de github..."

@@ -56,7 +56,7 @@ def nfiles(row):
 	project = row['project']
 	branch = row['branch']
 	cmt_hash = row['commitHash']
-	cmd = "git diff --name-only " + cmt_hash
+	cmd = "git diff --name-only " + cmt_hash + " " + cmt_hash + "^"
 	p = Cons.root + "/" + project  # TODO facil de romper el nombre por defecto nombre carpeta == nombre repo siempre???
 	result = cd.then_do(p, cmd)
 	nfiles = 0
@@ -71,12 +71,12 @@ def njavafiles(row):
 	project = row['project']
 	branch = row['branch']
 	cmt_hash = row['commitHash']
-	cmd = "git diff --name-only " + cmt_hash
+	cmd = "git diff --name-only " + cmt_hash + " " + cmt_hash + "^"
 	p = Cons.root + "/" + project  # TODO facil de romper el nombre por defecto nombre carpeta == nombre repo siempre???
 	result = cd.then_do(p, cmd)
 	nfiles = 0
 	for line in result:
-		if line.endswith('java\n'):
+		if line.endswith('java'):
 			nfiles += 1
 	return nfiles
 

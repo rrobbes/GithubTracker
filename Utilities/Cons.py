@@ -12,7 +12,7 @@ __email__ = "mllorens@dcc.uchile.cl"
 
 weeks = 20
 
-config = json.load(open('config.json'))
+config = json.load(open('./config.json'))
 root = config['root']
 
 sinceData = datetime.datetime.now() - datetime.timedelta(weeks=weeks)

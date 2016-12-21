@@ -8,7 +8,7 @@ from Utilities.flatten import flat
 from metrics.rowFunctions import is_merged,diffchars,nchar_text,nfiles,njavafiles,refactor,bugfix
 
 """
-Generate report with all the commits, issues, comments of the projects defined in config
+Generate report with all the commits, issues, comments, events of the projects defined in config
 The data is stored as a list of dicts (SEE header)
 the final report has a few other columns that are calculated by funtions in rowMetricList
 """
@@ -37,7 +37,7 @@ def formatCommit(p, u, commit):
 	dictO['time'] = commit['time']
 	dictO['project'] = p
 	dictO['user'] = u
-	dictO['type'] = 'COMMIT'
+	dictO['type'] = commit_wiki(commit) #'COMMIT'
 	dictO['url'] = commit['url']
 
 	dictO['body'] = commit['message']
@@ -61,19 +61,41 @@ def add_comment(p, u, comment):
 	dictO['body'] = comment['body']
 	return dictO
 
+def add_event(p, u, event):
+	dictO = defaultDict()
+	dictO['time'] = event['time']
+	dictO['project'] = p
+	dictO['user'] = u
+	dictO['type'] = 'EVENT'
+	dictO['url'] = event['url']
+
+	dictO['body'] = event['body']
+	return dictO
+
 
 def add_issue(p, u, issue):
 	dictO = defaultDict()
 	dictO['time'] = issue['time']
 	dictO['project'] = p
 	dictO['user'] = u
-	dictO['type'] = 'ISSUE'
+	dictO['type'] = issue_pull(issue)
 	dictO['url'] = issue['url']
 
 	dictO['title'] = issue['title']
 	dictO['body'] = issue['body']
 	dictO['assigned'] = issue['assigned']
 	return dictO
+
+def issue_pull(issue):
+    #https://github.com/JSwingRipples2016/jswingripples/pull/25
+    if '/pull/' in issue['url']:
+        return 'PULL'
+    else: return 'ISSUE'
+
+def commit_wiki(commit):
+    if commit['branch'] == 'wiki':
+        return 'WIKI'
+    else: return 'COMMIT'
 
 def preprocessing(data):
 	print "Inicio de preproceso de datos"
@@ -86,6 +108,8 @@ def preprocessing(data):
 				tabla.append(formatCommit(p, u, commit))
 			for comment in user['comments']:
 				tabla.append(add_comment(p, u, comment))
+			for event in user['events']:
+				tabla.append(add_event(p, u, event))
 			for bug in user['issues']:
 				tabla.append(add_issue(p, u, bug))
 	return tabla
@@ -108,7 +132,7 @@ def get(config):
 
 	#In this case all the metrics are for commits so a kind of filter is needed
 	#if the type of the row is commit calculate else return None value
-	filtroCommit = lambda f,r : f(r) if r['type'] == 'COMMIT' else None
+	filtroCommit = lambda f,r : f(r) if r['type'] == 'COMMIT' and not (r['branch'] == 'wiki') else None
 
 	# lista headerName : Rowfuntion
 	#TODO the base data for the rowFunctions could change (diferent data for diferent reports)
@@ -126,10 +150,25 @@ def get(config):
 	tabla = applyMetrics(tabla, rowMetricList, filtroCommit)
 
 	#Save to json
+        print "saving json"
 	with  open(output_file, "w") as toWrite:
 		toWrite.write(json.dumps(tabla))
 
 	#Save to csv
+        print "saving csv"
 	headerExt = header + [columnName for (columnName,fun) in rowMetricList]
 	flat(output_csv, headerExt, tabla)
+
+        #split to sub-csvs
+        print "splitting per user"
+        tablas = {}
+        for row in tabla:
+            user = row['user']
+            if user not in tablas:
+                tablas[user] = []
+            tablas[user].append(row)
+        for user, rows in tablas.iteritems():
+            output = "Output/" + user + ".csv" 
+            print output
+            flat(output, headerExt, rows)
 

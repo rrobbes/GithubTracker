@@ -1,133 +1,152 @@
 {
-  "root": "C:/Users/andres/reposta",
+  "user": "rrobbes",
+  "root": "/Users/rr/Desktop/cc4401/projects/2016-2",
   "pathSpecialCommits" : "Output/special_commits.csv",
   "startDate": "2016-08-01",
-  "endDate": "2016-11-01",
+  "endDate": "2016-11-26",
   "projects": [
-    { "name": "logisim",
-     "repos": [
-       {
-         "root": "IsmaelAlvarez",
-         "name": "logisim"
-       }
-     ],
-     "members": [
-       {"name": "Diego Madariaga",
-        "aliases": ["dmadariaga"]},
-       {"name": "Gabriel Dintrans",
-        "aliases": ["dintrans"]},
-       {"name": "Ismael Alvarez",
-        "aliases": ["IsmaelAlvarez"]},
-       {"name": "Javier Diaz",
-        "aliases": ["javierdiazp"]},
-       {"name": "Nicolás Caracci",
-        "aliases": ["ncaracci"]},
-       {"name": "Paolo Curotto",
-        "aliases": ["paolocurotto"]},
-       {"name": "Sergio Peñafiel",
-        "aliases": ["Sergio-P"]},
-       {"name": "Vicente Rotman",
-        "aliases": ["vrotmanh"]}
-      ]
-    },
-    { "name": "TeraCity",
-     "repos": [{
-        "root": "TeraCityCC4401",
-        "name": "Teracity"
-      }],
-     "members": [
-       {"name": "Eduardo Riveros Roca",
-        "aliases": ["adderou"]},
-       {"name": "Andrés Ferrada",
-        "aliases": ["aferral"]},
-       {"name": "Bastian Ermann",
-        "aliases": ["bermann"]},
-       {"name": "Francisco Pulgar",
-        "aliases": ["fcopulgar"]},
-       {"name": "Franco Sepúlveda",
-        "aliases": ["francosep"]},
-       {"name": "Juan Rojas",
-        "aliases": ["HuanRE"]},
-       {"name": "Nicolás Bravo",
-        "aliases": ["NicolasBravo94",
-                  "Nicolás Antonio Bravo Ramírez",
-                  "Bravo"]},
-       {"name": "Paula Ríos",
-        "aliases": ["burningreds"]}
-      ]
-    },
-
     { "name": "mochadoom",
      "repos": [{
-        "root": "njara",
+        "root": "PaperTanuki",
         "name": "mochadoom"
       }],
      "members": [
        {
-         "name": "Braulio López",
-         "aliases": ["elbraulio"]
+         "name": "Nelson Higuera Ruiz",
+         "aliases": ["pudumagico", "Nelson Higuera"]
        },{
-         "name": "Fabián Souto",
-         "aliases": ["setaSouto"]
+         "name": "Rodrigo Andres Hernandez Puga",
+         "aliases": ["Zerlink", "Rodrigo Hernandez Puga"]
        },{
-         "name": "Jaime Capponi",
-         "aliases": ["xZeok"]
+         "name": "Pablo Reszczynski",
+         "aliases": ["PaperTanuki", "theAwesomeTool"]
        },{
-         "name": "Javier Zambra",
-         "aliases": ["Lapnis", "Javier"]
+         "name": "Diego Gaspar Diaz Osorio",
+         "aliases": ["Diegodi", "diegodi"]
        },{
-         "name": "Joaquín Torres",
-         "aliases": ["juakotorres"]
+         "name": "Cristobal Enrique Fuentes Alvarado",
+         "aliases": ["solzhen"]
        },{
-         "name": "Matías Haeussler",
-         "aliases": ["masotrix"]
+         "name": "Sofia Valenzuela",
+         "aliases": ["sofiavalenzuela"]
        },{
-         "name": "Nicolás Jara",
-         "aliases": ["njara", "nicolasjara"]
+         "name": "Franco Cruces Ayala",
+         "aliases": ["francocruces"]
        },{
-         "name": "Pablo Gomez",
-         "aliases": ["kloness"]
+         "name": "Jose Daniel Munoz Ramirez",
+         "aliases": ["mkofcfm", "José Daniel Muñoz"]
        }, {
-         "name": "Patricio Taiba",
-         "aliases": ["ptaiba"]
+         "name": "Cristobal Eduardo Dotte Silva",
+         "aliases": ["cdotte"]
        }, {
-         "name": "Rodrigo Vera",
-         "aliases": ["rodrigoveraa"]
-       }
+         "name": "Tomas Perry Vives",
+         "aliases": ["gyahu"]
+       },
+	{
+	"name": "Nicolas Varas",
+	"aliases": ["nicolas", "nwvaras"]
+	}
       ]
     },
     { "name": "jswingripples",
      "repos": [
        {
-         "root": "jSwingRipples",
+         "root": "JSwingRipples2016",
          "name": "jswingripples"
-       },{
-         "root": "jSwingRipples",
-         "name": "eclipsePlugin"
-       },{
-         "root": "jSwingRipples",
-         "name": "netBeansPlugin"
        }
      ],
      "members": [
-       {"name": "Cristian Guzman",
-        "aliases": ["cguzmanp"]},
-       {"name": "Felipe Geldres",
-        "aliases": ["fgeldres"]},
+       {"name": "Stefano Gioia Chehade",
+        "aliases": ["sgioia9", "Stefano Gioia"]},
+       {"name": "Javier Enrique Robledo Leiva",
+        "aliases": ["javierobledo", "Javier Robledo"]},
+       {"name": "Juan Andres Moreno",
+        "aliases": ["amorenocb"]},
+       {"name": "Jacqueline Marin Sanchez",
+        "aliases": ["jacquems"]},
+       {"name": "Rodrigo Valdes Fernandez",
+        "aliases": ["Sircrab"]},
+       {"name": "Jose Esteban Lopez Hernandez",
+        "aliases": ["jestebanlh"]},
+       {"name": "Constanza Fierro mella",
+        "aliases": ["cfierro94"]},
+       {"name": "Sebastian Alejandro Puja Lopez",
+        "aliases": ["xZevalx", "Sebastián Pujá López"]},
        {"name": "Emilio Aburto",
-        "aliases": ["fcoclavero"]},
-       {"name": "Francisco Clavero",
-        "aliases": ["emilio-aburto"]},
-       {"name": "Manuel Olguín",
-        "aliases": ["molguin92"]},
-       {"name": "Mario Garrido",
-        "aliases": ["mrlz"]},
-       {"name": "Natalia Vidal",
-        "aliases": ["NattoV"]},
-       {"name": "Rodrigo Delgado",
-        "aliases": ["rdelgadov", "rodrigo delgado"]},
-       {"name": "Victor Molina",
-        "aliases": ["noahmelto"]}
+        "aliases": ["emilio-aburto", "Emilio Aburto L"]},
+	{"name": "Daniela Ruz Mieres",
+	"aliases": ["druzmieres"]},
+	{"name": "Previous Team",
+	"aliases": ["Manuel Olguin", "NattoV", "mrlz", "fcoclavero"]}
+      ]
+    },
+    { "name": "TeraCity",
+     "repos": [{
+        "root": "Hawkline451",
+        "name": "TeraCity"
+      }],
+     "members": [
+       {"name": "Pablo Badilla Torrealba",
+        "aliases": ["PblinBadi"]},
+       {"name": "Joaquin Jil",
+        "aliases": ["Hawkline451"]},
+       {"name": "Esteban Cifuentes",
+        "aliases": ["Tewi"]},
+       {"name": "Damian Ignacio Ibarra Zamorano",
+        "aliases": ["DemianDrake", "Damián Ibarra Z"]},
+       {"name": "Camilo Zenteno Portuguez",
+        "aliases": ["camilo-zenteno"]},
+       {"name": "Felipe Geldres Correa",
+        "aliases": ["fgeldres"]},
+       {"name": "Carlos Patricio Meneses Rodriguez",
+        "aliases": ["cpmeneses"]},
+       {"name": "Simon Rabourg",
+        "aliases": ["SimonRBG"]},
+       {"name": "Alberto Ignacio Sara Zaror",
+        "aliases": ["AlbertoSara"]},
+       {"name": "Miguel Zuniga Gonzalez",
+        "aliases": ["miguelo49"]},
+       {"name": "Rodrigo Vera",
+        "aliases": ["rodrigoveraa"]},
+	{"name": "Previous Team",
+	"aliases": ["Francisco Leonardo Pulgar Romero","fcopulgar", "Eduardo Riveros", "adderou", "Nicolás Antonio Bravo Ramírez", "Nicolás Bravo Ramírez", "burningreds", "andres", "Andres Ferrada", "francosep", "huan", "JuanRE", "maria antonieta espejo espinoza"]}
+      ]
+    },
+
+    { "name": "ATK",
+     "repos": [
+       {
+         "root": "belisariops",
+         "name": "ATK"
+       }
+     ],
+     "members": [
+       {"name": "Gabriel Alfonso Sanhueza Sanhueza",
+        "aliases": ["gsanhueza", "Gabriel Sanhueza"]},
+       {"name": "Javier Andres Espinoza",
+        "aliases": ["jaevespinoza", "Javier Espinoza"]},
+       {"name": "pablo poblete rojas",
+        "aliases": ["chantezan"]},
+       {"name": "Andrea Benavides Jaramillo",
+        "aliases": ["AnnBenavides", "Andrea Benavides"]},
+       {"name": "Belisario Panay",
+        "aliases": ["belisariops","Beli92"]},
+       {"name": "Paolo Curotto",
+        "aliases": ["paolocurotto"]},
+       {"name": "Alvaro Leon Sanchez",
+        "aliases": ["alvaroleons"]},
+       {"name": "Cristobal Velasquez Valdes",
+        "aliases": ["CristobalVelasquezV", "Cristobal"]},
+       {"name": "Martin Panza",
+        "aliases": ["martinpanza"]},
+       {"name": "Benjamin Jared Rodriguez Fuentes",
+        "aliases": ["Benrodf"]},
+       {"name": "Americo Ignacio Ferrada Diaz",
+        "aliases": ["afromatico", "Américo Igancio Ferrada Diaz", "Afromatico"]},
+       {"name": "Alvaro Leon S",
+        "aliases": ["alvaroleons"]},
+	{"name": "Previous Team",
+	"aliases": ["Sergio-P", "Joaquin", "Sergio Peñafiel", "Joaquín", "Sergio"]}
       ]
     }
   ]
