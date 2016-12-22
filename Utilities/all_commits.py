@@ -15,10 +15,18 @@ def get(config,repo, wiki=False):
     #		  'merge', 'add', 'del', 'hash']
     #writer.writerow(header)
     p = root + "/" + repo["name"]
+    w = ""
     if wiki:
 	    p = p + ".wiki"
-	    print p
-    branches = cd.then_do(p,"git branch -r -v --no-abbrev")
+	    w = ".wiki"
+    try:
+        branches = cd.then_do(p,"git branch -r -v --no-abbrev")
+    except Exception:
+        print "Carpeta no encontrada, clonando proyecto de github..."
+        clone = cd.then_do(root,"git clone https://www.github.com/"+repo["root"]+"/"+repo["name"]+w)
+        print clone
+        branches = cd.then_do(p,"git branch -r -v --no-abbrev")
+
     for rawbranch in branches:
         branchlist = rawbranch.split(" ")
         cbranch = ""
