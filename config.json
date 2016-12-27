@@ -1,7 +1,7 @@
 {
   "user": "adderou",
   "root": "/home/adderou/Projects/Java/CC4401/2016-2",
-  "pathSpecialCommits" : "Output/special_commits.csv",
+  "pathSpecialCommits" : "special_commits.csv",
   "startDate": "2016-08-01",
   "endDate": "2016-11-26",
   "projects": [
